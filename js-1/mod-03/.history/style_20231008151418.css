@@ -32,7 +32,7 @@ body {
 }
 
 .project {
-  align-self: flex-start;
+  align-self: center;
   color: #8a2be2;
   margin-bottom: 1rem;
 }
@@ -56,7 +56,7 @@ h3 {
 
 p,
 a {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   font-size: 1.25rem;
 }
 

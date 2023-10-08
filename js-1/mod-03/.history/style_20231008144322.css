@@ -1,16 +1,13 @@
 /* Reset de estilos padrão */
 * {
   margin: 0;
-  padding: 0; /*
-  border: 1px solid red; */
+  padding: 0;
   box-sizing: border-box;
 }
 
 /* Estilos globais */
 body {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 5rem;
+  padding: ;
 }
 
 .atividade {
@@ -22,17 +19,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 
 .title {
   color: #5c6ac4;
-  align-self: center;
   margin-bottom: 2rem;
 }
 
 .project {
-  align-self: flex-start;
   color: #8a2be2;
   margin-bottom: 1rem;
 }
@@ -42,22 +37,8 @@ body {
   margin-bottom: 0.5rem;
 }
 
-h1 {
-  font-size: 3rem;
-}
-
-h2 {
-  font-size: 2rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-
-p,
-a {
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
+p {
+  margin-bottom: 0.25rem;
 }
 
 .repository {

@@ -7,7 +7,6 @@ const options = {
 const statusConexao = "Conexão realizada com sucesso!";
 let fullDate, fullTime, eventDate;
 let numberConexao = 1;
-let tentativasSucesso = 0;
 
 function showTime() {
   eventDate = new Date();
@@ -25,21 +24,14 @@ setInterval(function () {
 }, 1000);
 
 function conexao() {
-
-  if (numberConexao == 1) {
+    if (numberConexao < 4) {
     console.log("Iniciando tentativas de conexão:");
-  }
   if (numberConexao < 4) {
     console.log(`${numberConexao}) Conexão com o arquivo JavaScript...`);
     console.log("Conexão realizada com sucesso!");
     console.log(fullDate + "\n" + fullTime);
-    tentativasSucesso++;
+    numberConexao++;
   }
-  if (numberConexao == 3) {
-    console.log("Finalizado as tentativas de conexão!");
-    console.log(`Tentativas com sucesso: ${tentativasSucesso}`);
-  }
-  numberConexao++;
 }
 
 // Atualiza a cada 2 segundos

@@ -1,0 +1,43 @@
+/* Reset de estilos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+/* Estilos globais */
+  body {
+  padding: 25px;
+}
+
+.resultado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.title {
+  color: #5c6ac4;
+}
+
+.project {
+  color: #8a2be2;
+}
+
+.status {
+  color: crimson;
+  margin: 0;
+}
+
+#currentDate,
+#currentTime {
+  margin: 0;
+}
+
+.repository {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}

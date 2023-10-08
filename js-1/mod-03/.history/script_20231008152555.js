@@ -7,7 +7,6 @@ const options = {
 const statusConexao = "Conexão realizada com sucesso!";
 let fullDate, fullTime, eventDate;
 let numberConexao = 1;
-let tentativasSucesso = 0;
 
 function showTime() {
   eventDate = new Date();
@@ -25,6 +24,7 @@ setInterval(function () {
 }, 1000);
 
 function conexao() {
+    let tentativasSucesso = 0;
 
   if (numberConexao == 1) {
     console.log("Iniciando tentativas de conexão:");
@@ -36,8 +36,8 @@ function conexao() {
     tentativasSucesso++;
   }
   if (numberConexao == 3) {
-    console.log("Finalizado as tentativas de conexão!");
-    console.log(`Tentativas com sucesso: ${tentativasSucesso}`);
+    console.log("Finalizado as tentativas de conexão");
+    console.log("Tentativas com sucesso: ");
   }
   numberConexao++;
 }

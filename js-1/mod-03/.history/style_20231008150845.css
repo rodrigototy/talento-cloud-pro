@@ -1,8 +1,8 @@
 /* Reset de estilos padrão */
 * {
   margin: 0;
-  padding: 0; /*
-  border: 1px solid red; */
+  padding: 0;   
+  border: 1px solid red;
   box-sizing: border-box;
 }
 
@@ -27,12 +27,10 @@ body {
 
 .title {
   color: #5c6ac4;
-  align-self: center;
   margin-bottom: 2rem;
 }
 
 .project {
-  align-self: flex-start;
   color: #8a2be2;
   margin-bottom: 1rem;
 }
@@ -56,7 +54,7 @@ h3 {
 
 p,
 a {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   font-size: 1.25rem;
 }
 
