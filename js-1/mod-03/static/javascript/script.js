@@ -25,16 +25,14 @@ function showTime() {
 setInterval(function () {
   showTime(); //Atualiza o Relógio
   if (tentativasSucesso < 3) {
-    conexao();  //Realiza o teste de conexão
+    conexao(); //Realiza o teste de conexão
   }
   if (numberConexao == 5) {
-    alert(
-      "Finalizado as tentativas de conexão!" +
-        "\n" +
-        `Tentativas com sucesso: ${tentativasSucesso}` +
-        "\n\n" +
-        "Confira os detalhes no log do Console!"
-    );
+    alert(`
+    Finalizado as tentativas de conexão!
+    Tentativas com sucesso: ${tentativasSucesso}
+
+    Confira os detalhes no log do Console!`);
   }
   numberConexao++;
 }, 1000);
@@ -50,7 +48,8 @@ function conexao() {
     tentativasSucesso++;
   }
   if (tentativasSucesso == 3) {
-    console.log("Finalizado as tentativas de conexão!");
-    console.log(`Tentativas com sucesso: ${tentativasSucesso}`);
+    console.log(`Finalizado as tentativas de conexão!
+Tentativas com sucesso: ${tentativasSucesso}
+    `);
   }
 }
