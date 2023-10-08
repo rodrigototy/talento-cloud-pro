@@ -27,7 +27,7 @@ function conexao() {
   if (numberConexao < 4) {
     console.log(`${numberConexao}) Conexão com um arquivo JavaScript...`);
     console.log("Conexão realizada com sucesso!");
-    console.log(fullDate + "\n" + fullTime);
+    console.log(fullDate + "" + AndTimeUTC);
     numberConexao++;
   }
 }

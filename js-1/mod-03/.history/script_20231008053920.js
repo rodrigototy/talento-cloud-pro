@@ -5,17 +5,21 @@ const options = {
   day: "numeric",
 };
 const statusConexao = "Conexão realizada com sucesso!";
-let fullDate, fullTime, eventDate;
+let fullDate, fullDateAndTimeUTC, eventDate;
 let numberConexao = 1;
 
 function showTime() {
   eventDate = new Date();
-  fullDate = eventDate.toLocaleDateString("pt-BR", options);
-  fullTime = eventDate.toTimeString();
 
-  document.getElementById("statusConexao").innerHTML = statusConexao;
-  document.getElementById("currentDate").innerHTML = fullDate;
-  document.getElementById("currentTime").innerHTML = fullTime;
+  fullDate =
+    eventDate.toLocaleDateString("pt-BR", options);
+
+  fullDateAndTimeUTC =
+    eventDate.toLocaleDateString("pt-BR", options) +
+    "<br>" +
+    eventDate.toTimeString();
+    document.getElementById("statusConexao").innerHTML = statusConexao;
+  document.getElementById("currentTime").innerHTML = fullDateAndTimeUTC;
 }
 
 // Atualiza a cada 1 segundo
@@ -27,7 +31,7 @@ function conexao() {
   if (numberConexao < 4) {
     console.log(`${numberConexao}) Conexão com um arquivo JavaScript...`);
     console.log("Conexão realizada com sucesso!");
-    console.log(fullDate + "\n" + fullTime);
+    console.log(fullDateAndTimeUTC);
     numberConexao++;
   }
 }
