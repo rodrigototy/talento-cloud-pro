@@ -13,9 +13,9 @@ a.innerText = "Visite o site da Proz Educação";
 
 //  Adiciona três itens simples na lista não ordenada usando innerHTML
 ul.innerHTML = `
-    <li>Primeiro Item Adicionado</li>
-    <li>Segundo Item Adicionado</li>
-    <li>Terceiro Item Adicionado</li>
+<li>Primeiro Item Adicionado</li>
+<li>Segundo Item Adicionado</li>
+<li>Terceiro Item Adicionado</li>
 `;
 
 //  Adiciona três itens com links na lista ordenada usando innerHTML
