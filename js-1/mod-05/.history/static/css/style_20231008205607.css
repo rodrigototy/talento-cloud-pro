@@ -49,8 +49,8 @@ body {
   align-self: flex-start;
 }
 
-.passos p b {
-  color: red;
+.passos p {
+  align-self: flex-start;
 }
 
 .passos li {

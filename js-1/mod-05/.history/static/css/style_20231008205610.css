@@ -50,7 +50,7 @@ body {
 }
 
 .passos p b {
-  color: red;
+  align-self: flex-start;
 }
 
 .passos li {
