@@ -24,8 +24,14 @@ function subProduto() {
 
 function atualizaSubTotal() {
   subtotalInfo.quantidade = qtdItemProduto.value;
-  quantidadeSubtotal.innerText = subtotalInfo.quantidade + " itens";
-  valorSubtotal.innerText = (subtotalInfo.valor * subtotalInfo.quantidade).toFixed(2);
+  if (subtotalInfo.quantidade == 1) {
+    quantidadeSubtotal.innerText = subtotalInfo.quantidade + " item";
+  } else if (subtotalInfo.quantidade > 1) {
+    quantidadeSubtotal.innerText = subtotalInfo.quantidade + " itens";
+  } else {
+    quantidadeSubtotal.innerText = "Carrinho Vazio";
+  }
+  valorSubtotal.innerText = (subtotalInfo.valor * subtotalInfo.quantidade).toFixed(2).replace(".", ",");
 }
 
 atualizaSubTotal();
