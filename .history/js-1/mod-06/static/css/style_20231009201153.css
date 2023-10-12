@@ -1,0 +1,98 @@
+/* Reset de estilos padrão */
+* {
+  margin: 0;
+  padding: 0; /*
+  border: 1px solid red; */
+  box-sizing: border-box;
+}
+
+/* Estilos globais */
+body {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 3rem 5rem;
+}
+
+.atividade {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  color: #5c6ac4;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.project {
+  align-self: flex-start;
+  color: #8a2be2;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.resultado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.classCatalogo {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cardProduto {
+  display: flex;
+  width: 50%;
+  border: 0.1rem solid black;
+}
+
+.cardImageItem {
+  height: auto;
+  max-height: 15rem;
+  width: 15rem;
+  border: 0.1rem solid black;
+}
+
+.cardInfoItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  border: 0.1rem solid black;
+}
+
+.h2NomeItem, .h3PrecoItem {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p,
+ul,
+ol,
+a {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.repository {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
