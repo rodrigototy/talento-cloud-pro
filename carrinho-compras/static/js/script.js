@@ -11,7 +11,9 @@ const btnSubProduto = document.querySelector("#btn-sub-produto");
 const qtdItemProduto = document.querySelector("#quantidade-produto");
 
 function addProduto() {
-  qtdItemProduto.value = Number(qtdItemProduto.value) + 1;
+  if (Number(qtdItemProduto.value) < 99) {
+    qtdItemProduto.value = Number(qtdItemProduto.value) + 1;
+  }
   atualizaSubTotal();
 }
 
@@ -25,16 +27,24 @@ function subProduto() {
 function atualizaSubTotal() {
   subtotalInfo.quantidade = qtdItemProduto.value;
   if (subtotalInfo.quantidade == 1) {
-    quantidadeSubtotal.innerText = subtotalInfo.quantidade + " item";
+    quantidadeSubtotal.innerText = Number(subtotalInfo.quantidade).toString().padStart(2, '0') + " item";
   } else if (subtotalInfo.quantidade > 1) {
-    quantidadeSubtotal.innerText = subtotalInfo.quantidade + " itens";
+    quantidadeSubtotal.innerText = Number(subtotalInfo.quantidade).toString().padStart(2, '0') + " itens";
   } else {
     quantidadeSubtotal.innerText = "Carrinho Vazio";
   }
+
   valorSubtotal.innerText = (subtotalInfo.valor * subtotalInfo.quantidade).toFixed(2).replace(".", ",");
+
+  if (qtdItemProduto.value == "" || qtdItemProduto.value == 0) {
+    qtdItemProduto.value = 0;
+  } else {
+    qtdItemProduto.value = Number(qtdItemProduto.value).toString().padStart(2, '0');
+  }
 }
 
 atualizaSubTotal();
 
 btnAddProduto.addEventListener("click", addProduto);
 btnSubProduto.addEventListener("click", subProduto);
+qtdItemProduto.addEventListener("input", atualizaSubTotal);

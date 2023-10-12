@@ -40,12 +40,10 @@ main {
   width: auto;
   height: 180px;
   background-color: lightgray;
-  position: relative;
 }
 
 .capa::after {
-  /* content: "Capa";
-  position: absolute; */
+  /* content: "Capa"; */
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
@@ -62,7 +60,7 @@ main {
 }
 
 input {
-  width: 40px;
+  width: 50px;
   text-align: center;
 }
 
@@ -86,6 +84,10 @@ input::-webkit-inner-spin-button {
   display: flex;
   gap: 30px;
   font-size: 1.2rem;
+}
+
+#subtotal p {
+  margin-top: 0;
 }
 
 footer {
