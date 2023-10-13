@@ -8,55 +8,55 @@ let subtotalInfo = {
 
 const btnAddProduto = document.querySelector("#btn-add-produto");
 const btnSubProduto = document.querySelector("#btn-sub-produto");
-const qtdItemProduto = document.querySelector("#quantidade-produto");
+const quantidadeItem = document.querySelector("#quantidade-produto");
 
 function addProduto() {
-  if (Number(qtdItemProduto.value) < 99) {
-    qtdItemProduto.value = Number(qtdItemProduto.value) + 1;
+  if (Number(quantidadeItem.value) < 99) {
+    quantidadeItem.value = Number(quantidadeItem.value) + 1;
   }
   atualizaSubTotal();
 }
 
 function subProduto() {
-  if (qtdItemProduto.value > 0) {
-    qtdItemProduto.value = Number(qtdItemProduto.value) - 1;
+  if (quantidadeItem.value > 0) {
+    quantidadeItem.value = Number(quantidadeItem.value) - 1;
     atualizaSubTotal();
   }
 }
 
 function atualizaSubTotal() {
-  if (qtdItemProduto.value > 99) {
-    qtdItemProduto.value = 99;
+  const precoProduto = subtotalInfo.valor;
+  let totalCarrinho = 0;
+  let quantidadeProduto = Number(quantidadeItem.value);
+
+  if (quantidadeProduto > 99) {
+    quantidadeProduto = 99;
   }
-  subtotalInfo.quantidade = qtdItemProduto.value;
-  if (subtotalInfo.quantidade == 1) {
-    quantidadeSubtotal.innerText =
-      Number(subtotalInfo.quantidade).toString().padStart(2, "0") + " item";
-  } else if (subtotalInfo.quantidade > 1) {
-    quantidadeSubtotal.innerText =
-      Number(subtotalInfo.quantidade).toString().padStart(2, "0") + " itens";
+  if (quantidadeProduto == 0) {
+    quantidadeItem.value = 0;
+  } else {
+    quantidadeItem.value = quantidadeProduto.toString().padStart(2, "0");
+  }
+
+  if (quantidadeProduto == 1) {
+    quantidadeSubtotal.innerText = quantidadeItem.value + " item";
+  } else if (quantidadeProduto > 1) {
+    quantidadeSubtotal.innerText = quantidadeItem.value + " itens";
   } else {
     quantidadeSubtotal.innerText = "Carrinho Vazio";
   }
 
-  valorSubtotal.innerText = (
-    subtotalInfo.valor * subtotalInfo.quantidade
-  ).toLocaleString("pt-BR", {
+  subtotalInfo.quantidade = quantidadeProduto;
+  totalCarrinho = quantidadeProduto * precoProduto;
+
+  valorSubtotal.innerText = totalCarrinho.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
-
-  if (qtdItemProduto.value == "" || qtdItemProduto.value == 0) {
-    qtdItemProduto.value = 0;
-  } else {
-    qtdItemProduto.value = Number(qtdItemProduto.value)
-      .toString()
-      .padStart(2, "0");
-  }
 }
 
 atualizaSubTotal();
 
 btnAddProduto.addEventListener("click", addProduto);
 btnSubProduto.addEventListener("click", subProduto);
-qtdItemProduto.addEventListener("input", atualizaSubTotal);
+quantidadeItem.addEventListener("input", atualizaSubTotal);
