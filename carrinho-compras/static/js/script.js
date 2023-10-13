@@ -25,21 +25,33 @@ function subProduto() {
 }
 
 function atualizaSubTotal() {
+  if (qtdItemProduto.value > 99) {
+    qtdItemProduto.value = 99;
+  }
   subtotalInfo.quantidade = qtdItemProduto.value;
   if (subtotalInfo.quantidade == 1) {
-    quantidadeSubtotal.innerText = Number(subtotalInfo.quantidade).toString().padStart(2, '0') + " item";
+    quantidadeSubtotal.innerText =
+      Number(subtotalInfo.quantidade).toString().padStart(2, "0") + " item";
   } else if (subtotalInfo.quantidade > 1) {
-    quantidadeSubtotal.innerText = Number(subtotalInfo.quantidade).toString().padStart(2, '0') + " itens";
+    quantidadeSubtotal.innerText =
+      Number(subtotalInfo.quantidade).toString().padStart(2, "0") + " itens";
   } else {
     quantidadeSubtotal.innerText = "Carrinho Vazio";
   }
 
-  valorSubtotal.innerText = (subtotalInfo.valor * subtotalInfo.quantidade).toFixed(2).replace(".", ",");
+  valorSubtotal.innerText = (
+    subtotalInfo.valor * subtotalInfo.quantidade
+  ).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
 
   if (qtdItemProduto.value == "" || qtdItemProduto.value == 0) {
     qtdItemProduto.value = 0;
   } else {
-    qtdItemProduto.value = Number(qtdItemProduto.value).toString().padStart(2, '0');
+    qtdItemProduto.value = Number(qtdItemProduto.value)
+      .toString()
+      .padStart(2, "0");
   }
 }
 
