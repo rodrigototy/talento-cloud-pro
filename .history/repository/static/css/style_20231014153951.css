@@ -1,0 +1,65 @@
+/* Reset de estilos padrão */
+* {
+  margin: 0;
+  padding: 0; /*
+  border: 1px solid red;  */
+  box-sizing: border-box;
+}
+
+/* Estilos globais */
+body {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #24292e;
+  background-color: #fff;
+}
+
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+.px-3 {
+  padding-right: 16px !important;
+  padding-left: 16px !important;
+}
+
+.my-5 {
+  margin-top: 32px !important;
+  margin-bottom: 50px !important;
+}
+
+.projetos {
+  display: flex;
+  justify-content:space-between ;
+  padding: 0.5rem 2rem;
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.columnIndex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
