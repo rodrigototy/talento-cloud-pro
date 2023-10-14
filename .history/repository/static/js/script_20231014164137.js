@@ -8,7 +8,7 @@ const columnIndex = document.querySelector(".columnIndex");
 const columnHomepage = document.querySelector(".columnHomepage");
 const columnRepository = document.querySelector(".columnRepository");
 const columnDescricao = document.querySelector(".columnDescricao");
-let index = 0;
+let index = 1;
 
 databaseProject.forEach((element) => {
   const itemIndex = document.createElement("p");

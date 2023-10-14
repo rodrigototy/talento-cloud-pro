@@ -16,8 +16,8 @@ databaseProject.forEach((element) => {
   const itemRepository = document.createElement("p");
   const itemDescricao = document.createElement("p");
 
-  index++;
-  itemIndex.innerHTML = `${index}`;
+  index++
+  itemIndex.innerHTML = `${element.index}`;
   itemHomepage.innerHTML = `<a href=${urlPageProject}${element.pasta}>${element.nome}</a>`;
   itemRepository.innerHTML = `<a href=${urlRepositoryProject}${element.pasta}>${element.nome}</a>`;
   itemDescricao.innerHTML = `${element.descricao}`;

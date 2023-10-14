@@ -1,7 +1,7 @@
 import Projeto from "./classProject.js";
 
 const databaseProject = [
-  new Projeto("Doação de Sangue", "aula-11", "Projeto integrador de um site para doação de sangue"),
+  new Projeto("Doação de Sangue", "aula-11", "Projeto integrador de um site para doação de "),
   new Projeto("Aula 11", "aula-11", "Projeto da aula 11"),
   new Projeto("Aula 12", "aula-12", "Projeto da aula 12"),
   new Projeto("Aula 13", "aula-13", "Projeto da aula 13"),

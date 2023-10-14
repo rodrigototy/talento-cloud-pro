@@ -1,7 +1,7 @@
 import Projeto from "./classProject.js";
 
 const databaseProject = [
-  new Projeto("Doação de Sangue", "aula-11", "Projeto integrador de um site para doação de sangue"),
+  new Projeto("Aula 11", "aula-11", "Projeto da aula 11"),
   new Projeto("Aula 11", "aula-11", "Projeto da aula 11"),
   new Projeto("Aula 12", "aula-12", "Projeto da aula 12"),
   new Projeto("Aula 13", "aula-13", "Projeto da aula 13"),
@@ -12,7 +12,7 @@ const databaseProject = [
   new Projeto("JavaScript I - Módulo 06", "js-1/mod-06", "Catálogo de Produtos à Venda"),
   new Projeto("Tela de Login", "js-2/form-login", "Projeto de formulário de login"),
   new Projeto("Carrinho de Compras", "js-2/carrinho-compras", "Projeto carrinho de compras"),
-  //  new Projeto("", "", ""),
+  //  new Projeto("", "", "", ""),
 ];
 
 export default databaseProject;
