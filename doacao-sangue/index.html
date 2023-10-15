@@ -37,7 +37,7 @@
           alt="Formulário Cadastro"
         />
         <form action="processar_dados.php" method="post">
-          <div class="form-column">
+          <div class="form-column sub-grupo-1">
             <div class="form-row">
               <label for="nome">Nome do Doador:</label>
               <input type="text" id="nome" name="nome" required />
@@ -54,7 +54,7 @@
             </div>
           </div>
 
-          <div class="form-column">
+          <div class="form-column sub-grupo-1">
             <div class="form-row">
               <label for="email">e-mail:</label>
               <input type="text" id="email" name="email" />
@@ -73,13 +73,13 @@
             </div>
           </div>
 
-          <div class="form-column sub-grupo">
+          <div class="form-column sub-grupo-2">
             <div class="form-row">
               <label for="endereco">Endereço:</label>
               <input type="text" id="endereco" name="endereco" required />
             </div>
 
-            <div class="form-column">
+            <div class="form-column sub-grupo-3">
               <div class="form-row">
                 <label for="complemento">Complemento:</label>
                 <input type="text" id="complemento" name="complemento" />
@@ -92,13 +92,13 @@
             </div>
           </div>
 
-          <div class="form-column sub-grupo">
+          <div class="form-column sub-grupo-4">
             <div class="form-row">
               <label for="cidade">Cidade:</label>
               <input type="text" id="cidade" name="cidade" required />
             </div>
 
-            <div class="form-column">
+            <div class="form-column sub-grupo-5">
               <div class="form-row">
                 <label for="estado">Estado:</label>
                 <select id="estado" name="estado" required>
@@ -133,7 +133,7 @@
                 </select>
               </div>
 
-              <div class="form-row half-cell-50">
+              <div class="form-row half-cell-40">
                 <label for="cep">CEP:</label>
                 <input
                   type="text"
@@ -146,7 +146,7 @@
             </div>
           </div>
 
-          <div class="form-column sub-grupo">
+          <div class="form-column sub-grupo-6">
             <div class="form-row half-cell-50">
               <label for="telefone">Telefone:</label>
               <input
@@ -158,7 +158,7 @@
               />
             </div>
 
-            <div class="form-column">
+            <div class="form-column sub-grupo-7">
               <div class="form-row half-cell-50">
                 <label for="tipo_sanguineo">Tipo Sanguíneo:</label>
                 <select id="tipo_sanguineo" name="tipo_sanguineo">
@@ -185,33 +185,57 @@
               <legend>Fatores de Risco / Comorbidades:</legend>
 
               <div class="check-column">
-                <div class="check-item half-cell-20">
-                  <input type="checkbox" id="checkHipertensao" name="checkHipertensao" />
-                  <label for="checkHipertensao">Hipertensão Descontrolado</label>
+                <div class="check-row">
+                  <div class="check-item">
+                    <input
+                      type="checkbox"
+                      id="checkHipertensao"
+                      name="checkHipertensao"
+                    />
+                    <label for="checkHipertensao"
+                      >Hipertensão Descontrolado</label
+                    >
+                  </div>
+
+                  <div class="check-item">
+                    <input
+                      type="checkbox"
+                      id="checkDiabetes"
+                      name="checkDiabetes"
+                    />
+                    <label for="checkDiabetes">Diabetes Descontrolado</label>
+                  </div>
+                  <div class="check-item">
+                    <input
+                      type="checkbox"
+                      id="checkCardiaco"
+                      name="checkCardiaco"
+                    />
+                    <label for="checkCardiaco">Doenças Cardíacas</label>
+                  </div>
                 </div>
 
-                <div class="check-item half-cell-20">
-                  <input type="checkbox" id="checkDiabetes" name="checkDiabetes" />
-                  <label for="checkDiabetes">Diabetes Descontrolado</label>
-                </div>
-                <div class="check-item half-cell-20">
-                  <input type="checkbox" id="checkCardiaco" name="checkCardiaco" />
-                  <label for="checkCardiaco">Doenças Cardíacas</label>
-                </div>
-              </div>
-
-              <div class="check-column">
-                <div class="check-item half-cell-20">
-                  <input type="checkbox" id="checkGravidez" name="checkGravidez" />
-                  <label for="checkGravidez">Gravidez / Amamentação</label>
-                </div>
-                <div class="check-item half-cell-20">
-                  <input type="checkbox" id="checkImuno" name="checkImuno" />
-                  <label for="checkImuno">Imunosuprimido</label>
-                </div>
-                <div class="check-item half-cell-20">
-                  <input type="checkbox" id="checkTatuagens" name="checkTatuagens" />
-                  <label for="checkTatuagens">Tatuagens e piercings</label>
+                <div class="check-row">
+                  <div class="check-item">
+                    <input
+                      type="checkbox"
+                      id="checkGravidez"
+                      name="checkGravidez"
+                    />
+                    <label for="checkGravidez">Gravidez / Amamentação</label>
+                  </div>
+                  <div class="check-item">
+                    <input type="checkbox" id="checkImuno" name="checkImuno" />
+                    <label for="checkImuno">Imunosuprimido</label>
+                  </div>
+                  <div class="check-item">
+                    <input
+                      type="checkbox"
+                      id="checkTatuagens"
+                      name="checkTatuagens"
+                    />
+                    <label for="checkTatuagens">Tatuagens e piercings</label>
+                  </div>
                 </div>
               </div>
             </fieldset>

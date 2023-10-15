@@ -2,8 +2,8 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /*
-  border: 1px solid black;  */
+  box-sizing: border-box; 
+  border: 1px solid black;  
 }
 
 ul {
@@ -103,13 +103,24 @@ body {
 
 .check-column {
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.check-row {
+  display: flex;
   justify-content: space-around;
 }
 
 .check-item {
   display: flex;
-  align-items: first baseline;
+  align-items: center;
+  width: 30%;
   gap: 0.5rem;
+}
+
+.check-item label {
+  margin: 0;
 }
 
 /* Estilos para o formulário */
@@ -183,13 +194,13 @@ footer {
 }
 
 /* Estilos para elementos responsivos */
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .form-row {
     padding: 0 10px;
   }
 }
 
-@media (max-width: 940px) {
+@media (max-width: 1040px) {
   .logo_form {
     width: 25%;
   }
@@ -201,7 +212,7 @@ footer {
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 980px) {
   .logo {
     max-width: auto;
     max-height: 50px;
@@ -213,6 +224,10 @@ footer {
 
   .form-row {
     margin: 5px;
+  }
+
+  .buttons {
+    margin-top: 20px;
   }
 
   label,
@@ -235,21 +250,21 @@ footer {
   .form-title {
     font-size: small;
   }
+
+  form {
+    padding: 1rem 3rem 1rem 2rem;
+  }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 660px) {
   .logo {
     display: none;
   }
 
-  .sub-grupo {
-    display: block !important;
+  .form-row {
+    padding: 0 2px;
   }
 
-  .check-column {
-    flex-direction: column;
-  }
-  
   input[type="button"],
   input[type="submit"] {
     font-size: 14px;
@@ -263,7 +278,14 @@ footer {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 620px) {
+  .sub-grupo-2 {
+    flex-direction: column;
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 580px) {
   .form-title {
     font-size: x-small;
   }
@@ -273,11 +295,30 @@ footer {
     display: none;
   }
 
+  .form-row {
+    padding: 0;
+    align-self: flex-start;
+  }
+
+  .check-column {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .check-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .check-item {
+    width: auto;
+    align-items: center;
+  }
+
   input[type="text"],
   input[type="date"],
   input[type="tel"],
-  select,
-  textarea {
+  select {
     padding: 2px;
     margin-bottom: 2px;
     border: 1px solid #ccc;
@@ -292,18 +333,49 @@ footer {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 540px) {
   .form-row {
-    margin: 2px 0;
+    margin: 2px;
     padding: 0 2px;
+  }
+
+  .sub-grupo-2 {
+    flex-direction: column;
+    align-self: stretch;
+  }
+
+  .buttons {
+    margin-top: 15px;
+  }
+
+  form {
+    padding: 1rem 2rem 1rem 1rem;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 490px) {
+  .sub-grupo-4 {
+    flex-direction: column;
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 440px) {
   .form-title {
     font-size: xx-small;
   }
 
+  .sub-grupo-1,
+  .sub-grupo-6 {
+    flex-direction: column;
+    align-self: stretch;
+  }
+
+  .check-column {
+    flex-direction: column;
+    padding-left: 1.5rem;
+  }
+  
   label,
   legend {
     font-size: 12px;
@@ -313,15 +385,13 @@ footer {
   input[type="submit"] {
     font-size: 12px;
   }
+}
 
-  .form-column {
+@media (max-width: 320px) {
+  .sub-grupo-3,
+  .sub-grupo-5 {
     display: flex;
     flex-direction: column;
     align-self: stretch;
-  }
-
-  .form-row {
-    padding: 0;
-    align-self: flex-start;
   }
 }
