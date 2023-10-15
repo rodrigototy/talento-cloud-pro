@@ -269,7 +269,6 @@ footer {
   input[type="submit"] {
     font-size: 14px;
     padding: 5px 10px;
-    width: auto;
   }
 
   label,
@@ -330,6 +329,7 @@ footer {
   input[type="submit"] {
     font-size: 14px;
     padding: 5px 10px;
+    width: 30%;
   }
 }
 
@@ -384,6 +384,7 @@ footer {
   input[type="button"],
   input[type="submit"] {
     font-size: 12px;
+    width: 35%;
   }
 }
 
@@ -393,5 +394,10 @@ footer {
     display: flex;
     flex-direction: column;
     align-self: stretch;
+  }
+
+  input[type="button"],
+  input[type="submit"] {
+    width: 40%;
   }
 }
