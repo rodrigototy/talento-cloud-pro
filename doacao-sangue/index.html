@@ -180,16 +180,41 @@
             </div>
           </div>
 
-          <div class="form-column">
-            <div class="form-row">
-              <label for="comorbidades">Comorbidades:</label>
-              <textarea
-                id="comorbidades"
-                name="comorbidades"
-                rows="4"
-                cols="50"
-              ></textarea>
-            </div>
+          <div class="form-row">
+            <fieldset>
+              <legend>Fatores de Risco / Comorbidades:</legend>
+
+              <div class="check-column">
+                <div class="check-item half-cell-20">
+                  <input type="checkbox" id="checkHipertensao" name="checkHipertensao" />
+                  <label for="checkHipertensao">Hipertensão Descontrolado</label>
+                </div>
+
+                <div class="check-item half-cell-20">
+                  <input type="checkbox" id="checkDiabetes" name="checkDiabetes" />
+                  <label for="checkDiabetes">Diabetes Descontrolado</label>
+                </div>
+                <div class="check-item half-cell-20">
+                  <input type="checkbox" id="checkCardiaco" name="checkCardiaco" />
+                  <label for="checkCardiaco">Doenças Cardíacas</label>
+                </div>
+              </div>
+
+              <div class="check-column">
+                <div class="check-item half-cell-20">
+                  <input type="checkbox" id="checkGravidez" name="checkGravidez" />
+                  <label for="checkGravidez">Gravidez / Amamentação</label>
+                </div>
+                <div class="check-item half-cell-20">
+                  <input type="checkbox" id="checkImuno" name="checkImuno" />
+                  <label for="checkImuno">Imunosuprimido</label>
+                </div>
+                <div class="check-item half-cell-20">
+                  <input type="checkbox" id="checkTatuagens" name="checkTatuagens" />
+                  <label for="checkTatuagens">Tatuagens e piercings</label>
+                </div>
+              </div>
+            </fieldset>
           </div>
 
           <div class="form-row buttons">

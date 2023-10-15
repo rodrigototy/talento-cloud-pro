@@ -101,6 +101,17 @@ body {
   border-radius: 10px;
 }
 
+.check-column {
+  display: flex;
+  justify-content: space-around;
+}
+
+.check-item {
+  display: flex;
+  align-items: first baseline;
+  gap: 0.5rem;
+}
+
 /* Estilos para o formulário */
 form {
   display: flex;
@@ -113,8 +124,14 @@ form {
   flex-wrap: wrap;
 }
 
+fieldset {
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+}
+
 /* Estilos para rótulos e campos de entrada */
-label {
+label,
+legend {
   display: block;
   margin-bottom: 5px;
   color: white;
@@ -198,7 +215,8 @@ footer {
     margin: 5px;
   }
 
-  label {
+  label,
+  legend {
     font-size: 16px;
   }
 
@@ -228,6 +246,10 @@ footer {
     display: block !important;
   }
 
+  .check-column {
+    flex-direction: column;
+  }
+  
   input[type="button"],
   input[type="submit"] {
     font-size: 14px;
@@ -235,7 +257,8 @@ footer {
     width: auto;
   }
 
-  label {
+  label,
+  legend {
     font-size: smaller;
   }
 }
@@ -281,7 +304,8 @@ footer {
     font-size: xx-small;
   }
 
-  label {
+  label,
+  legend {
     font-size: 12px;
   }
 
