@@ -1,0 +1,65 @@
+/* Reset de estilos padrão */
+* {
+  margin: 0;
+  padding: 0;
+  border-style: solid 1px ;
+  box-sizing: border-box;
+}
+
+/* Estilos globais */
+body {
+  max-width: 1200px;
+  padding: 3rem 5rem;
+}
+
+.atividade {
+  display: flex;
+  flex-direction: column;
+}
+
+.resultado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10rem;
+}
+
+.title {
+  color: #5c6ac4;
+  margin-bottom: 2rem;
+}
+
+.project {
+  color: #8a2be2;
+  margin-bottom: 1rem;
+}
+
+.status {
+  color: crimson;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p,
+a {
+  margin-bottom: 0.25rem;
+  font-size: 1.25rem;
+}
+
+.repository {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
