@@ -2,8 +2,8 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; 
-  border: 1px solid black;  
+  box-sizing: border-box; /*
+  border: 1px solid black;  */
 }
 
 ul {
@@ -375,7 +375,7 @@ footer {
     flex-direction: column;
     padding-left: 1.5rem;
   }
-  
+
   label,
   legend {
     font-size: 12px;
