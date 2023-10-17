@@ -12,6 +12,7 @@ const databaseProject = [
   new Projeto("JavaScript I - Módulo 06", "js-1/mod-06", "Catálogo de Produtos à Venda"),
   new Projeto("Tela de Login", "js-2/form-login", "Projeto de formulário de login"),
   new Projeto("Carrinho de Compras", "js-2/carrinho-compras", "Projeto carrinho de compras"),
+  new Projeto("Eventos de Teclado", "js-2/eventos-de-teclado", "Capturar eventos do teclado e do mouse"),
   //  new Projeto("", "", ""),
 ];
 
