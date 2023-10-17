@@ -18,16 +18,15 @@ linkPerfil.addEventListener("mouseover", () => {
   console.log("Mostrar menu");
 });
 
+navPerfil.addEventListener("mouseover", () => {
+  mostrarMenuPerfil = true;
+  console.log("Mostrar menu");
+});
+
 linkPerfil.addEventListener("mouseout", () => {
-  if (mostrarMenuPerfil) {
-    navPerfil.addEventListener("mouseover", () => {
-      console.log("Mostrar menu");
-    });
-    console.log("Não fechar menu");
-  } else {
-    mostrarMenuPerfil = false;
-    navPerfil.style.display = "none";
-  }
+  setInterval(10);
+  mostrarMenuPerfil = false;
+  navPerfil.style.display = "none";
 });
 
 document.addEventListener("keyup", (e) => {

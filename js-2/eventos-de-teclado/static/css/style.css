@@ -16,7 +16,7 @@ header {
 }
 
 .index-main {
-  height: calc(100vh - 60px);
+  height: calc(100vh - 150px);
   display: flex;
   background-color: #CDCDCD;
 }
@@ -32,7 +32,7 @@ header {
 }
 
 nav {
-  height: calc(100vh - 60px);
+  height: calc(100vh - 150px);
   display: flex;
   position: absolute;
 }
@@ -76,4 +76,11 @@ form {
   display: flex;
   flex-direction: column;
   max-width: 280px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  padding-top: 30px;
 }
