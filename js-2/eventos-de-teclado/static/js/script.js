@@ -9,7 +9,6 @@ Lauro Mello
 const linkPerfil = document.getElementById("link-perfil");
 const navPerfil = document.getElementById("nav-perfil");
 const linkPerfilDados = document.querySelector("#link-perfil-dados");
-let menuPerfil = false;
 let mostrarMenuPerfil = false;
 
 linkPerfil.addEventListener("mouseover", () => {
@@ -18,15 +17,18 @@ linkPerfil.addEventListener("mouseover", () => {
   console.log("Mostrar menu");
 });
 
+linkPerfil.addEventListener("mouseout", () => {
+  setTimeout(() => {
+    mostrarMenuPerfil = false;
+  }, 500);
+  if (!mostrarMenuPerfil) {
+    navPerfil.style.display = "none";
+  }
+});
+
 navPerfil.addEventListener("mouseover", () => {
   mostrarMenuPerfil = true;
   console.log("Mostrar menu");
-});
-
-linkPerfil.addEventListener("mouseout", () => {
-  setInterval(10);
-  mostrarMenuPerfil = false;
-  navPerfil.style.display = "none";
 });
 
 document.addEventListener("keyup", (e) => {
