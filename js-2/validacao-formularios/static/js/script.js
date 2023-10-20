@@ -1,4 +1,10 @@
 // ---------- VALIDAÇÃO USERNAME ---------- //
+const msgErroUsername = "O username deve ter pelo menos 6 caracteres\n";
+const msgErroEmail = "Digite um email válido\n";
+const msgErroIdade = "A idade informada é inválida!\n";
+const msgErroSenha = "A senha não atende aos critérios de segurança.\n";
+const msgErroConfereSenha = "As senhas não conferem!";
+
 const usernameInput = document.getElementById("username");
 const usernameLabel = document.querySelector('label[for="username"]');
 const usernameHelper = document.getElementById("username-helper");
@@ -15,14 +21,49 @@ const senhaInput = document.getElementById("senha");
 const senhaLabel = document.querySelector('label[for="senha"]');
 const senhaHelper = document.getElementById("senha-helper");
 
-const confirmaSenhaInput = document.getElementById("confirma-senha");
-const confirmaSenhaLabel = document.querySelector(
-  'label[for="confirma-senha"]'
-);
-const confirmaSenhaHelper = document.getElementById("confirma-senha-helper");
+const confereSenhaInput = document.getElementById("confirma-senha");
+const confereSenhaLabel = document.querySelector('label[for="confirma-senha"]');
+const confereSenhaHelper = document.getElementById("confirma-senha-helper");
 
-function validarUsername(username) {
-  return username.length > 5;
+const buttonEnviar = document.querySelector('button[type="submit"]');
+
+buttonEnviar.addEventListener("click", (event) => {
+  event.preventDefault;
+  let msgErro = "";
+
+  if (!validarUsername()) {
+    msgErro += msgErroUsername;
+  }
+  if (!validarEmail(emailInput.value)) {
+    msgErro += msgErroEmail;
+  }
+  if (!validarIdade(idadeInput.value)) {
+    msgErro += msgErroIdade;
+  }
+  if (!validarSenha(senhaInput.value)) {
+    msgErro += msgErroSenha;
+  }
+  if (!confereSenha(confereSenhaInput.value)) {
+    msgErro += msgErroConfereSenha;
+  }
+  if (msgErro == "") {
+    alert("Dados enviados com sucesso!");
+  } else {
+    alert(msgErro);
+    return;
+  }
+});
+
+function validarUsername() {
+  const statusUsername = usernameInput.value.length > 5;
+  formatarCampo(
+    statusUsername,
+    usernameLabel,
+    usernameInput,
+    usernameHelper,
+    msgErroUsername
+  );
+  return statusUsername;
 }
 
 function validarEmail(email) {
@@ -48,15 +89,11 @@ function validarSenha(password) {
     return false;
   }
   // Verifica se há pelo menos um caractere especial (por exemplo, !@#$%^&*)
-  if (!/[!@#\$%^&*]/.test(password)) {
-    return false;
-  }
-  // Se todas as condições anteriores passarem, a senha é considerada forte
-  return true;
+  return !!/[-!@#\\$%^&*]/.test(password);
 }
 
-function confereSenha(senha, confirmaSenha) {
-  return senha === confirmaSenha && senha !== "";
+function confereSenha(senha, confereSenha) {
+  return senha === confereSenha && senha !== "";
 }
 
 function validarIdade(idade) {
@@ -66,11 +103,7 @@ function validarIdade(idade) {
     idade = parseInt(idade);
 
     // Verifica se o valor é um número inteiro e está dentro do intervalo desejado
-    if (Number.isInteger(idade) && idade > 0 && idade < 150) {
-      return true; // Idade válida
-    } else {
-      return false; // Idade inválida
-    }
+    return !!(Number.isInteger(idade) && idade > 0 && idade < 150);
   }
   return true; // Campo idade é opcional e não foi preenchido
 }
@@ -109,19 +142,13 @@ senhaInput.addEventListener("focus", () => {
   senhaLabel.classList.add("required-popup");
 });
 
-confirmaSenhaInput.addEventListener("focus", () => {
-  confirmaSenhaLabel.classList.add("required-popup");
+confereSenhaInput.addEventListener("focus", () => {
+  confereSenhaLabel.classList.add("required-popup");
 });
 
 // Validar valor do input
 usernameInput.addEventListener("blur", (e) => {
-  formatarCampo(
-    validarUsername(e.target.value),
-    usernameLabel,
-    usernameInput,
-    usernameHelper,
-    "O username deve ter pelo menos 6 caracteres"
-  );
+  validarUsername();
 });
 
 emailInput.addEventListener("blur", (e) => {
@@ -130,7 +157,7 @@ emailInput.addEventListener("blur", (e) => {
     emailLabel,
     emailInput,
     emailHelper,
-    "Digite um email válido"
+    msgErroEmail
   );
 });
 
@@ -140,27 +167,26 @@ senhaInput.addEventListener("blur", (e) => {
     senhaLabel,
     senhaInput,
     senhaHelper,
-    "A senha não atende aos critérios de segurança."
+    msgErroSenha
   );
 });
 
-confirmaSenhaInput.addEventListener("blur", (e) => {
+confereSenhaInput.addEventListener("blur", (e) => {
   formatarCampo(
     confereSenha(senhaInput.value, e.target.value),
-    confirmaSenhaLabel,
-    confirmaSenhaInput,
-    confirmaSenhaHelper,
-    "As senhas não conferem!"
+    confereSenhaLabel,
+    confereSenhaInput,
+    confereSenhaHelper,
+    msgErroConfereSenha
   );
 });
 
 idadeInput.addEventListener("blur", (e) => {
-    formatarCampo(
-      validarIdade(e.target.value),
-      idadeLabel,
-      idadeInput,
-      idadeHelper,
-      "A idade informada é inválida!"
-    );
-  });
-  
+  formatarCampo(
+    validarIdade(e.target.value),
+    idadeLabel,
+    idadeInput,
+    idadeHelper,
+    msgErroIdade
+  );
+});
