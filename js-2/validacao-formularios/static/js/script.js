@@ -43,7 +43,7 @@ buttonEnviar.addEventListener("click", (event) => {
   if (!validarSenha(senhaInput.value)) {
     msgErro += msgErroSenha;
   }
-  if (!confereSenha(confereSenhaInput.value)) {
+  if (!confereSenha(senhaInput.value, confereSenhaInput.value)) {
     msgErro += msgErroConfereSenha;
   }
   if (msgErro == "") {
