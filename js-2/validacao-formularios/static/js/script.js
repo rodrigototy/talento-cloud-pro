@@ -28,29 +28,55 @@ const confereSenhaHelper = document.getElementById("confirma-senha-helper");
 const buttonEnviar = document.querySelector('button[type="submit"]');
 
 buttonEnviar.addEventListener("click", (event) => {
-  event.preventDefault;
   let msgErro = "";
+  let fieldFocus = "";
 
   if (!validarUsername()) {
     msgErro += msgErroUsername;
+    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
+      fieldFocus = "usernameInput";
+    }
   }
   if (!validarEmail(emailInput.value)) {
     msgErro += msgErroEmail;
+    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
+      fieldFocus = "emailInput";
+    }
   }
   if (!validarIdade(idadeInput.value)) {
     msgErro += msgErroIdade;
+    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
+      fieldFocus = "idadeInput";
+    }
   }
   if (!validarSenha(senhaInput.value)) {
     msgErro += msgErroSenha;
+    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
+      fieldFocus = "senhaInput";
+    }
   }
   if (!confereSenha(senhaInput.value, confereSenhaInput.value)) {
     msgErro += msgErroConfereSenha;
+    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
+      fieldFocus = "confereSenhaInput";
+    }
   }
   if (msgErro == "") {
     alert("Dados enviados com sucesso!");
   } else {
     alert(msgErro);
-    return;
+    event.preventDefault();
+    if (fieldFocus == "usernameInput") {
+      usernameInput.focus();
+    } else if (fieldFocus == "emailInput") {
+      emailInput.focus();
+    } else if (fieldFocus == "idadeInput") {
+      idadeInput.focus();
+    } else if (fieldFocus == "senhaInput") {
+      senhaInput.focus();
+    } else if (fieldFocus == "confereSenhaInput") {
+      confereSenhaInput.focus();
+    }
   }
 });
 
@@ -68,7 +94,9 @@ function validarUsername() {
 
 function validarEmail(email) {
   const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-  return regexEmail.test(email);
+  const statusEmail = regexEmail.test(email);
+  formatarCampo(statusEmail, emailLabel, emailInput, emailHelper, msgErroEmail);
+  return statusEmail;
 }
 
 function validarSenha(password) {
@@ -152,12 +180,16 @@ usernameInput.addEventListener("blur", (e) => {
 });
 
 emailInput.addEventListener("blur", (e) => {
+  validarEmail(emailInput.value);
+});
+
+idadeInput.addEventListener("blur", (e) => {
   formatarCampo(
-    validarEmail(e.target.value),
-    emailLabel,
-    emailInput,
-    emailHelper,
-    msgErroEmail
+    validarIdade(e.target.value),
+    idadeLabel,
+    idadeInput,
+    idadeHelper,
+    msgErroIdade
   );
 });
 
@@ -178,15 +210,5 @@ confereSenhaInput.addEventListener("blur", (e) => {
     confereSenhaInput,
     confereSenhaHelper,
     msgErroConfereSenha
-  );
-});
-
-idadeInput.addEventListener("blur", (e) => {
-  formatarCampo(
-    validarIdade(e.target.value),
-    idadeLabel,
-    idadeInput,
-    idadeHelper,
-    msgErroIdade
   );
 });
