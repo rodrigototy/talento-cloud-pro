@@ -1,41 +1,29 @@
-// Definir informações dos campos
-const fields = [
-  {
-    input: document.getElementById("username"),
-    label: document.querySelector('label[for="username"]'),
-    helper: document.getElementById("username-helper"),
-    errorMessage: "O username deve ter pelo menos 6 caracteres\n",
-    validate: validarUsername,
-  },
-  {
-    input: document.getElementById("email"),
-    label: document.querySelector('label[for="email"]'),
-    helper: document.getElementById("email-helper"),
-    errorMessage: "Digite um email válido\n",
-    validate: validarEmail,
-  },
-  {
-    input: document.getElementById("idade"),
-    label: document.querySelector('label[for="idade"]'),
-    helper: document.getElementById("idade-helper"),
-    errorMessage: "A idade informada é inválida!\n",
-    validate: validarIdade,
-  },
-  {
-    input: document.getElementById("senha"),
-    label: document.querySelector('label[for="senha"]'),
-    helper: document.getElementById("senha-helper"),
-    errorMessage: "A senha não atende aos critérios de segurança.\n",
-    validate: validarSenha,
-  },
-  {
-    input: document.getElementById("confirma-senha"),
-    label: document.querySelector('label[for="confirma-senha"]'),
-    helper: document.getElementById("confirma-senha-helper"),
-    errorMessage: "As senhas não conferem!",
-    validate: (senha, confirmaSenha) => confereSenha(senha, confirmaSenha),
-  },
-];
+// Seleção de objetos do formulário
+const msgErroUsername = "O username deve ter pelo menos 6 caracteres\n";
+const msgErroEmail = "Digite um email válido\n";
+const msgErroIdade = "A idade informada é inválida!\n";
+const msgErroSenha = "A senha não atende aos critérios de segurança.\n";
+const msgErroConfereSenha = "As senhas não conferem!";
+
+const usernameInput = document.getElementById("username");
+const usernameLabel = document.querySelector('label[for="username"]');
+const usernameHelper = document.getElementById("username-helper");
+
+const emailInput = document.getElementById("email");
+const emailLabel = document.querySelector('label[for="email"]');
+const emailHelper = document.getElementById("email-helper");
+
+const idadeInput = document.getElementById("idade");
+const idadeLabel = document.querySelector('label[for="idade"]');
+const idadeHelper = document.getElementById("idade-helper");
+
+const senhaInput = document.getElementById("senha");
+const senhaLabel = document.querySelector('label[for="senha"]');
+const senhaHelper = document.getElementById("senha-helper");
+
+const confereSenhaInput = document.getElementById("confirma-senha");
+const confereSenhaLabel = document.querySelector('label[for="confirma-senha"]');
+const confereSenhaHelper = document.getElementById("confirma-senha-helper");
 
 const buttonEnviar = document.querySelector('button[type="submit"]');
 
@@ -43,23 +31,52 @@ buttonEnviar.addEventListener("click", (event) => {
   let msgErro = "";
   let fieldFocus = "";
 
-  fields.forEach((field) => {
-    if (!field.validate(field.input.value)) {
-      msgErro += field.errorMessage;
-      if (!fieldFocus) {
-        fieldFocus = field.input.id;
-      }
+  if (!validarUsername()) {
+    msgErro += msgErroUsername;
+    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
+      fieldFocus = "usernameInput";
     }
-  });
-
-  if (msgErro === "") {
+  }
+  if (!validarEmail(emailInput.value)) {
+    msgErro += msgErroEmail;
+    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
+      fieldFocus = "emailInput";
+    }
+  }
+  if (!validarIdade(idadeInput.value)) {
+    msgErro += msgErroIdade;
+    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
+      fieldFocus = "idadeInput";
+    }
+  }
+  if (!validarSenha(senhaInput.value)) {
+    msgErro += msgErroSenha;
+    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
+      fieldFocus = "senhaInput";
+    }
+  }
+  if (!confereSenha(senhaInput.value, confereSenhaInput.value)) {
+    msgErro += msgErroConfereSenha;
+    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
+      fieldFocus = "confereSenhaInput";
+    }
+  }
+  if (msgErro == "") {
     alert("Dados enviados com sucesso!");
   } else {
     alert(msgErro);
     event.preventDefault();
-    const focusField = fields.find((field) => field.input.id === fieldFocus);
-    if (focusField) {
-      focusField.input.focus();
+    if (fieldFocus == "usernameInput") {
+      usernameInput.focus();
+    } else if (fieldFocus == "emailInput") {
+      emailInput.focus();
+    } else if (fieldFocus == "idadeInput") {
+      idadeInput.value = "";
+      idadeInput.focus();
+    } else if (fieldFocus == "senhaInput") {
+      senhaInput.focus();
+    } else if (fieldFocus == "confereSenhaInput") {
+      confereSenhaInput.focus();
     }
   }
 });
