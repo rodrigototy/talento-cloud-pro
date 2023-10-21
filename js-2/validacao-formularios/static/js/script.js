@@ -1,29 +1,41 @@
-// ---------- VALIDAÇÃO USERNAME ---------- //
-const msgErroUsername = "O username deve ter pelo menos 6 caracteres\n";
-const msgErroEmail = "Digite um email válido\n";
-const msgErroIdade = "A idade informada é inválida!\n";
-const msgErroSenha = "A senha não atende aos critérios de segurança.\n";
-const msgErroConfereSenha = "As senhas não conferem!";
-
-const usernameInput = document.getElementById("username");
-const usernameLabel = document.querySelector('label[for="username"]');
-const usernameHelper = document.getElementById("username-helper");
-
-const emailInput = document.getElementById("email");
-const emailLabel = document.querySelector('label[for="email"]');
-const emailHelper = document.getElementById("email-helper");
-
-const idadeInput = document.getElementById("idade");
-const idadeLabel = document.querySelector('label[for="idade"]');
-const idadeHelper = document.getElementById("idade-helper");
-
-const senhaInput = document.getElementById("senha");
-const senhaLabel = document.querySelector('label[for="senha"]');
-const senhaHelper = document.getElementById("senha-helper");
-
-const confereSenhaInput = document.getElementById("confirma-senha");
-const confereSenhaLabel = document.querySelector('label[for="confirma-senha"]');
-const confereSenhaHelper = document.getElementById("confirma-senha-helper");
+// Definir informações dos campos
+const fields = [
+  {
+    input: document.getElementById("username"),
+    label: document.querySelector('label[for="username"]'),
+    helper: document.getElementById("username-helper"),
+    errorMessage: "O username deve ter pelo menos 6 caracteres\n",
+    validate: validarUsername,
+  },
+  {
+    input: document.getElementById("email"),
+    label: document.querySelector('label[for="email"]'),
+    helper: document.getElementById("email-helper"),
+    errorMessage: "Digite um email válido\n",
+    validate: validarEmail,
+  },
+  {
+    input: document.getElementById("idade"),
+    label: document.querySelector('label[for="idade"]'),
+    helper: document.getElementById("idade-helper"),
+    errorMessage: "A idade informada é inválida!\n",
+    validate: validarIdade,
+  },
+  {
+    input: document.getElementById("senha"),
+    label: document.querySelector('label[for="senha"]'),
+    helper: document.getElementById("senha-helper"),
+    errorMessage: "A senha não atende aos critérios de segurança.\n",
+    validate: validarSenha,
+  },
+  {
+    input: document.getElementById("confirma-senha"),
+    label: document.querySelector('label[for="confirma-senha"]'),
+    helper: document.getElementById("confirma-senha-helper"),
+    errorMessage: "As senhas não conferem!",
+    validate: (senha, confirmaSenha) => confereSenha(senha, confirmaSenha),
+  },
+];
 
 const buttonEnviar = document.querySelector('button[type="submit"]');
 
@@ -31,51 +43,23 @@ buttonEnviar.addEventListener("click", (event) => {
   let msgErro = "";
   let fieldFocus = "";
 
-  if (!validarUsername()) {
-    msgErro += msgErroUsername;
-    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
-      fieldFocus = "usernameInput";
+  fields.forEach((field) => {
+    if (!field.validate(field.input.value)) {
+      msgErro += field.errorMessage;
+      if (!fieldFocus) {
+        fieldFocus = field.input.id;
+      }
     }
-  }
-  if (!validarEmail(emailInput.value)) {
-    msgErro += msgErroEmail;
-    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
-      fieldFocus = "emailInput";
-    }
-  }
-  if (!validarIdade(idadeInput.value)) {
-    msgErro += msgErroIdade;
-    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
-      fieldFocus = "idadeInput";
-    }
-  }
-  if (!validarSenha(senhaInput.value)) {
-    msgErro += msgErroSenha;
-    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
-      fieldFocus = "senhaInput";
-    }
-  }
-  if (!confereSenha(senhaInput.value, confereSenhaInput.value)) {
-    msgErro += msgErroConfereSenha;
-    if (fieldFocus == undefined || fieldFocus == null || fieldFocus == "") {
-      fieldFocus = "confereSenhaInput";
-    }
-  }
-  if (msgErro == "") {
+  });
+
+  if (msgErro === "") {
     alert("Dados enviados com sucesso!");
   } else {
     alert(msgErro);
     event.preventDefault();
-    if (fieldFocus == "usernameInput") {
-      usernameInput.focus();
-    } else if (fieldFocus == "emailInput") {
-      emailInput.focus();
-    } else if (fieldFocus == "idadeInput") {
-      idadeInput.focus();
-    } else if (fieldFocus == "senhaInput") {
-      senhaInput.focus();
-    } else if (fieldFocus == "confereSenhaInput") {
-      confereSenhaInput.focus();
+    const focusField = fields.find((field) => field.input.id === fieldFocus);
+    if (focusField) {
+      focusField.input.focus();
     }
   }
 });
@@ -99,41 +83,54 @@ function validarEmail(email) {
   return statusEmail;
 }
 
-function validarSenha(password) {
-  // Verifica o comprimento mínimo (geralmente 8 caracteres ou mais)
-  if (password.length < 8) {
-    return false;
-  }
-  // Verifica se há pelo menos uma letra maiúscula
-  if (!/[A-Z]/.test(password)) {
-    return false;
-  }
-  // Verifica se há pelo menos uma letra minúscula
-  if (!/[a-z]/.test(password)) {
-    return false;
-  }
-  // Verifica se há pelo menos um número
-  if (!/[0-9]/.test(password)) {
-    return false;
-  }
-  // Verifica se há pelo menos um caractere especial (por exemplo, !@#$%^&*)
-  return !!/[-!@#\\$%^&*]/.test(password);
-}
-
-function confereSenha(senha, confereSenha) {
-  return senha === confereSenha && senha !== "";
-}
-
 function validarIdade(idade) {
+  let statusIdade = true; // Campo idade é opcional e não foi preenchido
   // Verifica se o campo idade foi preenchido
   if (idade !== undefined && idade !== null && idade !== "") {
     // Converte o valor para um número
     idade = parseInt(idade);
-
     // Verifica se o valor é um número inteiro e está dentro do intervalo desejado
-    return !!(Number.isInteger(idade) && idade > 0 && idade < 150);
+    statusIdade = !!(Number.isInteger(idade) && idade > 0 && idade < 150);
   }
-  return true; // Campo idade é opcional e não foi preenchido
+  formatarCampo(statusIdade, idadeLabel, idadeInput, idadeHelper, msgErroIdade);
+  return statusIdade;
+}
+
+function validarSenha(password) {
+  let statusSenha;
+  // Verifica o comprimento mínimo (geralmente 8 caracteres ou mais)
+  if (password.length < 8) {
+    statusSenha = false;
+  }
+  // Verifica se há pelo menos uma letra maiúscula
+  if (!/[A-Z]/.test(password)) {
+    statusSenha = false;
+  }
+  // Verifica se há pelo menos uma letra minúscula
+  if (!/[a-z]/.test(password)) {
+    statusSenha = false;
+  }
+  // Verifica se há pelo menos um número
+  if (!/[0-9]/.test(password)) {
+    statusSenha = false;
+  }
+  // Verifica se há pelo menos um caractere especial (por exemplo, !@#$%^&*)
+  statusSenha = !!/[-!@#\\$%^&*]/.test(password);
+
+  formatarCampo(statusSenha, senhaLabel, senhaInput, senhaHelper, msgErroSenha);
+  return statusSenha;
+}
+
+function confereSenha(senha, confereSenha) {
+  const statusConfereSenha = senha === confereSenha && senha !== "";
+  formatarCampo(
+    statusConfereSenha,
+    confereSenhaLabel,
+    confereSenhaInput,
+    confereSenhaHelper,
+    msgErroConfereSenha
+  );
+  return statusConfereSenha;
 }
 
 // Formatar o campo conforme o status da validação
@@ -184,31 +181,13 @@ emailInput.addEventListener("blur", (e) => {
 });
 
 idadeInput.addEventListener("blur", (e) => {
-  formatarCampo(
-    validarIdade(e.target.value),
-    idadeLabel,
-    idadeInput,
-    idadeHelper,
-    msgErroIdade
-  );
+  validarIdade(e.target.value);
 });
 
 senhaInput.addEventListener("blur", (e) => {
-  formatarCampo(
-    validarSenha(e.target.value),
-    senhaLabel,
-    senhaInput,
-    senhaHelper,
-    msgErroSenha
-  );
+  validarSenha(e.target.value);
 });
 
 confereSenhaInput.addEventListener("blur", (e) => {
-  formatarCampo(
-    confereSenha(senhaInput.value, e.target.value),
-    confereSenhaLabel,
-    confereSenhaInput,
-    confereSenhaHelper,
-    msgErroConfereSenha
-  );
+  confereSenha(senhaInput.value, e.target.value);
 });
