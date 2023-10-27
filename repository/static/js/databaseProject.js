@@ -47,7 +47,7 @@ const databaseProject = [
   ),
   new Projeto(
     "Validação de Formulários Proz",
-    "js-2/validacao-formularios-02",
+    "js-2/validacao-formularios-proz",
     "Exemplo Proz de eventos que são usados para validar formulários"
   ),
   new Projeto(
