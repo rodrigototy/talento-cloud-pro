@@ -40,9 +40,25 @@ function validarCPF(cpf) {
 }
 
 function validarDataNascimento(data) {
+  // Verifica o formato da data
   const regexDataNascimento =
     /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/;
-  return regexDataNascimento.test(data);
+
+  if (!regexDataNascimento.test(data)) {
+    return false; // Retorna falso se o formato da data não estiver correto
+  }
+
+  // Converte a string de data para um objeto Date
+  const dataNascimento = new Date(data);
+
+  // Obtém a data atual
+  const hoje = new Date();
+
+  // Calcula a idade subtraindo o ano de nascimento do ano atual
+  const idade = hoje.getFullYear() - dataNascimento.getFullYear();
+
+  // Verifica se a data de nascimento é maior que 16 anos e menor que 60 anos
+  return idade > 16 && idade < 60;
 }
 
 function validarEmail(email) {
@@ -56,11 +72,7 @@ function validarTelefone(telefone) {
 
   // remove todos os caracteres não numéricos
   telefone = telefone.replace(/[^\d]+/g, "");
-  if (regexFixo.test(telefone) || regexCelular.test(telefone)) {
-    return true;
-  } else {
-    return false;
-  }
+  return !!(regexFixo.test(telefone) || regexCelular.test(telefone));
 }
 
 function validarCep(cep) {
