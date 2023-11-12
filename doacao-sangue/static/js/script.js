@@ -25,9 +25,9 @@ function validarCPF(cpf) {
   )
     return false;
   // Valida 1o dígito
-  add = 0;
+  let add = 0;
   for (let i = 0; i < 9; i++) add += cpf.charAt(i) * (10 - i);
-  rev = 11 - (add % 11);
+  let rev = 11 - (add % 11);
   if (rev === 10 || rev === 11) rev = 0;
   if (rev !== parseInt(cpf.charAt(9))) return false;
   // Valida 2o dígito
@@ -35,8 +35,7 @@ function validarCPF(cpf) {
   for (let i = 0; i < 10; i++) add += cpf.charAt(i) * (11 - i);
   rev = 11 - (add % 11);
   if (rev === 10 || rev === 11) rev = 0;
-  if (rev !== parseInt(cpf.charAt(10))) return false;
-  return true;
+  return rev === parseInt(cpf.charAt(10));
 }
 
 function validarDataNascimento(data) {
@@ -58,7 +57,7 @@ function validarDataNascimento(data) {
   const idade = hoje.getFullYear() - dataNascimento.getFullYear();
 
   // Verifica se a data de nascimento é maior que 16 anos e menor que 60 anos
-  return idade > 16 && idade < 60;
+  return idade >= 16 && idade < 60;
 }
 
 function validarEmail(email) {
@@ -97,7 +96,7 @@ function formatarTelefone(telefone) {
   if (telefone.length == 10) {
     return telefone.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
   } else {
-    return telefone.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, "($1) $2.$3-$4");
+    return telefone.replace(/(\d{2})(\d)(\d{4})(\d{4})/, "($1) $2.$3-$4");
   }
 }
 
