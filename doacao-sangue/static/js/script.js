@@ -6,7 +6,7 @@ const fields = [
     input: document.getElementById("nome"),
     label: document.querySelector('label[for="nome"]'),
     helper: document.getElementById("nome-helper"),
-    errorMessage: "O nome deve ter pelo menos 10 caracteres",
+    errorMessage: "O nome deve ter pelo menos 10 caracteres\n",
     validate: validarString10,
     formatInput: null,
     nextField: null,
@@ -17,7 +17,7 @@ const fields = [
     input: document.getElementById("data_nascimento"),
     label: document.querySelector('label[for="data_nascimento"]'),
     helper: document.getElementById("data_nascimento-helper"),
-    errorMessage: "Deve ser maior ou igual a 16 e menor que 60 anos",
+    errorMessage: "Deve ser maior ou igual a 16 e menor que 60 anos\n",
     validate: validarDataNascimento,
     formatInput: formatarDataNascimento,
     nextField: document.querySelector("#email"),
@@ -28,7 +28,7 @@ const fields = [
     input: document.getElementById("email"),
     label: document.querySelector('label[for="email"]'),
     helper: document.getElementById("email-helper"),
-    errorMessage: "O e-mail informado é inválido!",
+    errorMessage: "O e-mail informado é inválido!\n",
     validate: validarEmail,
     formatInput: null,
     nextField: document.querySelector("#cpf"),
@@ -39,7 +39,7 @@ const fields = [
     input: document.getElementById("cpf"),
     label: document.querySelector('label[for="cpf"]'),
     helper: document.getElementById("cpf-helper"),
-    errorMessage: "O CPF informado é inválido!",
+    errorMessage: "O CPF informado é inválido!\n",
     validate: validarCPF,
     formatInput: formatarCPF,
     nextField: document.querySelector("#logradouro"),
@@ -50,7 +50,7 @@ const fields = [
     input: document.getElementById("logradouro"),
     label: document.querySelector('label[for="logradouro"]'),
     helper: document.getElementById("logradouro-helper"),
-    errorMessage: "Logradouro deve ser maior que 10 caracteres!",
+    errorMessage: "Logradouro deve ser maior que 10 caracteres!\n",
     validate: validarString10,
     formatInput: null,
     nextField: null,
@@ -61,8 +61,8 @@ const fields = [
     input: document.getElementById("numero"),
     label: document.querySelector('label[for="numero"]'),
     helper: document.getElementById("numero-helper"),
-    errorMessage: "Informe o número!",
-    validate: validarString02,
+    errorMessage: "Informe o número!\n",
+    validate: validarString01,
     formatInput: null,
     nextField: null,
   },
@@ -72,7 +72,7 @@ const fields = [
     input: document.getElementById("bairro"),
     label: document.querySelector('label[for="bairro"]'),
     helper: document.getElementById("bairro-helper"),
-    errorMessage: "Bairro deve ser maior que 4 caracteres!",
+    errorMessage: "Bairro deve ser maior que 4 caracteres!\n",
     validate: validarString04,
     formatInput: null,
     nextField: null,
@@ -83,7 +83,7 @@ const fields = [
     input: document.getElementById("cidade"),
     label: document.querySelector('label[for="cidade"]'),
     helper: document.getElementById("cidade-helper"),
-    errorMessage: "Cidade deve ser maior que 4 caracteres!",
+    errorMessage: "Cidade deve ser maior que 4 caracteres!\n",
     validate: validarString04,
     formatInput: null,
     nextField: null,
@@ -94,7 +94,7 @@ const fields = [
     input: document.getElementById("estado"),
     label: document.querySelector('label[for="estado"]'),
     helper: document.getElementById("estado-helper"),
-    errorMessage: "Informe o estado!",
+    errorMessage: "Informe o estado!\n",
     validate: validarString02,
     formatInput: null,
     nextField: null,
@@ -105,7 +105,7 @@ const fields = [
     input: document.getElementById("cep"),
     label: document.querySelector('label[for="cep"]'),
     helper: document.getElementById("cep-helper"),
-    errorMessage: "CEP inválido!",
+    errorMessage: "CEP inválido!\n",
     validate: validarCep,
     formatInput: formatarCep,
     nextField: document.querySelector("#telefone"),
@@ -116,19 +116,14 @@ const fields = [
     input: document.getElementById("telefone"),
     label: document.querySelector('label[for="telefone"]'),
     helper: document.getElementById("telefone-helper"),
-    errorMessage: "Telefone inválido!",
+    errorMessage: "Telefone inválido!\n",
     validate: validarTelefone,
     formatInput: formatarTelefone,
     nextField: document.querySelector("#tipo_sanguineo"),
   },
 ];
 
-const inputTelefone = document.querySelector("#telefone");
-const inputTipoSanguineo = document.querySelector("#tipo_sanguineo");
-
-function encontrarIndiceDoCampo(fieldName) {
-  return fields.findIndex((field) => field.fieldName === fieldName);
-}
+const buttonEnviar = document.querySelector('input[type="submit"]');
 
 fields.forEach((field) => {
   // Adicionar tratamento de eventos 'focus' para campos obrigatórios
@@ -152,6 +147,10 @@ fields.forEach((field) => {
     }
   });
 });
+
+function encontrarIndiceDoCampo(fieldName) {
+  return fields.findIndex((field) => field.fieldName === fieldName);
+}
 
 function validarCampoGenerico(value, fieldName, validateFunction) {
   const fieldIndex = encontrarIndiceDoCampo(fieldName);
@@ -179,6 +178,10 @@ function formatarCampo(indexField, status) {
     helper.classList.add("visible");
     helper.innerHTML = errorMessage;
   }
+}
+
+function validarString01(string) {
+  return string.length >= 1;
 }
 
 function validarString02(string) {
@@ -256,7 +259,6 @@ function validarCep(cep) {
 function validarTelefone(telefone) {
   const regexFixo = /^\d{10}$/;
   const regexCelular = /^\d{11}$/;
-
   // remove todos os caracteres não numéricos
   telefone = telefone.replace(/[^\d]+/g, "");
   return !!(regexFixo.test(telefone) || regexCelular.test(telefone));
@@ -300,3 +302,28 @@ function formatarTelefone(telefone, nextField) {
   }
   return telefone;
 }
+
+buttonEnviar.addEventListener("click", (event) => {
+  let msgErro = "";
+  let fieldFocus = "";
+
+  fields.forEach((field) => {
+    if (field.requerido && !field.validate(field.input.value)) {
+      msgErro += field.errorMessage;
+      if (!fieldFocus) {
+        fieldFocus = field.input.id;
+      }
+    }
+  });
+
+  if (msgErro === "") {
+    alert("Dados enviados com sucesso!");
+  } else {
+    alert(msgErro);
+    event.preventDefault();
+    const focusField = fields.find((field) => field.input.id === fieldFocus);
+    if (focusField) {
+      focusField.input.focus();
+    }
+  }
+});
