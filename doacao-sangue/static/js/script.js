@@ -330,9 +330,10 @@ buttonEnviar.addEventListener("click", (event) => {
   });
 
   if (msgErro === "") {
-    alert("Dados enviados com sucesso!");
+    showPopup("Dados enviados com sucesso!", "success-popup");
+    event.preventDefault();
   } else {
-    showErrorPopup(msgErro);
+    showPopup(msgErro, "error-popup");
     event.preventDefault();
     const focusField = fields.find((field) => field.input.id === fieldFocus);
     if (focusField) {
@@ -341,12 +342,12 @@ buttonEnviar.addEventListener("click", (event) => {
   }
 });
 
-function showErrorPopup(message) {
+function showPopup(message, classe) {
   messagePopup.innerText = message;
-  windowPopup.classList.add("error-popup");
+  windowPopup.classList.add(classe);
   windowPopup.style.display = "flex";
   setTimeout(function () {
-    windowPopup.classList.remove("error-popup");
+    windowPopup.classList.remove(classe);
     windowPopup.style.display = "none";
   }, 5000); // Oculta o popup após 5 segundos
 }
