@@ -422,7 +422,7 @@ footer {
 }
 
 .required-popup::after {
-  content: "*Campo obrigatório";
+  content: "*Requerido";
   position: absolute;
   top: 0;
   right: 0;

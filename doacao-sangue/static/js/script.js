@@ -56,6 +56,17 @@ const fields = [
     nextField: null,
   },
   {
+    fieldName: "numero",
+    requerido: true,
+    input: document.getElementById("numero"),
+    label: document.querySelector('label[for="numero"]'),
+    helper: document.getElementById("numero-helper"),
+    errorMessage: "Informe o número!",
+    validate: validarString02,
+    formatInput: null,
+    nextField: null,
+  },
+  {
     fieldName: "bairro",
     requerido: true,
     input: document.getElementById("bairro"),
@@ -224,7 +235,11 @@ function validarDataNascimento(data) {
 
 function validarEmail(email) {
   const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-  return regexEmail.test(email);
+  if (email.length > 0) {
+    return regexEmail.test(email);
+  } else {
+    return true;
+  }
 }
 
 function validarCep(cep) {
@@ -265,7 +280,7 @@ function formatarCPF(cpf, nextField) {
 function formatarCep(cep, nextField) {
   // Formata o CEP no formato 99.999-999
   if (cep.length == 8) {
-    cep = cep.replace(/(\d{2})(\d{3})(\d{3})/, "$1.$2-$3");;
+    cep = cep.replace(/(\d{2})(\d{3})(\d{3})/, "$1.$2-$3");
     nextField.focus();
   }
   return cep;
@@ -274,14 +289,11 @@ function formatarCep(cep, nextField) {
 function formatarTelefone(telefone, nextField) {
   // Formata o Telefone no formato (81) 9999-9999 ou (81) 9.9999-9999
   if (telefone.length == 10) {
-    return telefone.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
-  } else {
-    return telefone.replace(/(\d{2})(\d)(\d{4})(\d{4})/, "($1) $2.$3-$4");
+    telefone = telefone.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
+  } else if (telefone.length > 10) {
+    telefone = telefone.replace(/[^\d]+/g, "");
+    telefone = telefone.replace(/(\d{2})(\d)(\d{4})(\d{4})/, "($1) $2.$3-$4");
+    nextField.focus();
   }
+  return telefone;
 }
-
-inputTelefone.addEventListener("input", () => {
-  if (inputTelefone.value.length == 11) {
-    inputTipoSanguineo.focus();
-  }
-});
