@@ -135,8 +135,8 @@ const fields = [
 ];
 
 const buttonEnviar = document.querySelector('input[type="submit"]');
-const messageError = document.getElementById("messageError");
-const errorPopup = document.getElementById("errorPopup");
+const messagePopup = document.getElementById("messagePopup");
+const windowPopup = document.getElementById("windowPopup");
 
 fields.forEach((field) => {
   // Adicionar tratamento de eventos 'focus' para campos obrigatórios
@@ -342,9 +342,11 @@ buttonEnviar.addEventListener("click", (event) => {
 });
 
 function showErrorPopup(message) {
-  messageError.innerText = message;
-  errorPopup.style.display = "flex";
+  messagePopup.innerText = message;
+  windowPopup.classList.add("error-popup");
+  windowPopup.style.display = "flex";
   setTimeout(function () {
-    errorPopup.style.display = "none";
+    windowPopup.classList.remove("error-popup");
+    windowPopup.style.display = "none";
   }, 5000); // Oculta o popup após 5 segundos
 }
