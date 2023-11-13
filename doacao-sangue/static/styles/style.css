@@ -415,9 +415,9 @@ footer {
 
 .helper-text {
   display: none;
-  font-size: .75rem;
+  font-size: 0.75rem;
   color: darkred;
-  background-color: #CCBBBB;
+  background-color: #ccbbbb;
   width: fit-content;
 }
 
@@ -426,9 +426,9 @@ footer {
   position: absolute;
   top: 0;
   right: 0;
-  color: #DFDFDF;
-  font-size: .65rem;
-  padding: .2rem .3rem;
+  color: #dfdfdf;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.3rem;
   width: auto;
   display: block;
   background-color: #202020;
@@ -436,16 +436,40 @@ footer {
 
 .error {
   border: solid 2px #992020;
-  background-color: #CCBBBB;
+  background-color: #ccbbbb;
   color: #662020;
 }
 
 .correct {
-  background-color: #BBCCBB;
+  background-color: #bbccbb;
   border: solid 2px #206620;
   color: #206620;
 }
 
 .visible {
   display: block;
+}
+
+.error-popup {
+  position: fixed;
+  top: 5vh;
+  left: 50vw;
+  border-radius: 1vh;
+  transform: translateX(-50%);
+  width: 30vw;
+  background-color: #ff9999; /* Tons de vermelho */
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  display: none;
+  align-items: center;
+  text-align: left;
+  z-index: 999;
+}
+
+.error-popup::before {
+  content: url('../img/mensagem-de-erro-64.png');
+  width: auto; /* Ajuste conforme necessário */
+  height: auto; /* Ajuste conforme necessário */
+  margin: 0 20px; /* Espaço entre a imagem e o texto */
 }

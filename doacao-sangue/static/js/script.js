@@ -6,7 +6,8 @@ const fields = [
     input: document.getElementById("nome"),
     label: document.querySelector('label[for="nome"]'),
     helper: document.getElementById("nome-helper"),
-    errorMessage: "O nome deve ter pelo menos 10 caracteres\n",
+    helperErrorMessage: "Nome muito curto",
+    popupErrorMessage: "O nome deve ter pelo menos 10 caracteres;\n",
     validate: validarString10,
     formatInput: null,
     nextField: null,
@@ -17,7 +18,8 @@ const fields = [
     input: document.getElementById("data_nascimento"),
     label: document.querySelector('label[for="data_nascimento"]'),
     helper: document.getElementById("data_nascimento-helper"),
-    errorMessage: "Deve ser maior ou igual a 16 e menor que 60 anos\n",
+    helperErrorMessage: "Idade incompatível",
+    popupErrorMessage: "Você deve ser maior de 16 anos e menor que 60 anos;\n",
     validate: validarDataNascimento,
     formatInput: formatarDataNascimento,
     nextField: document.querySelector("#email"),
@@ -28,7 +30,8 @@ const fields = [
     input: document.getElementById("email"),
     label: document.querySelector('label[for="email"]'),
     helper: document.getElementById("email-helper"),
-    errorMessage: "O e-mail informado é inválido!\n",
+    helperErrorMessage: "Email incorreto",
+    popupErrorMessage: "O e-mail informado está inválido;\n",
     validate: validarEmail,
     formatInput: null,
     nextField: document.querySelector("#cpf"),
@@ -39,7 +42,8 @@ const fields = [
     input: document.getElementById("cpf"),
     label: document.querySelector('label[for="cpf"]'),
     helper: document.getElementById("cpf-helper"),
-    errorMessage: "O CPF informado é inválido!\n",
+    helperErrorMessage: "CPF inválido",
+    popupErrorMessage: "O CPF informado está inválido;\n",
     validate: validarCPF,
     formatInput: formatarCPF,
     nextField: document.querySelector("#logradouro"),
@@ -50,7 +54,8 @@ const fields = [
     input: document.getElementById("logradouro"),
     label: document.querySelector('label[for="logradouro"]'),
     helper: document.getElementById("logradouro-helper"),
-    errorMessage: "Logradouro deve ser maior que 10 caracteres!\n",
+    helperErrorMessage: "Logradouro muito pequeno",
+    popupErrorMessage: "O logradouro deve conter mais de 10 caracteres;\n",
     validate: validarString10,
     formatInput: null,
     nextField: null,
@@ -61,7 +66,8 @@ const fields = [
     input: document.getElementById("numero"),
     label: document.querySelector('label[for="numero"]'),
     helper: document.getElementById("numero-helper"),
-    errorMessage: "Informe o número!\n",
+    helperErrorMessage: "Informe número",
+    popupErrorMessage: "Informe o número do logradouro ou S/N;\n",
     validate: validarString01,
     formatInput: null,
     nextField: null,
@@ -72,7 +78,8 @@ const fields = [
     input: document.getElementById("bairro"),
     label: document.querySelector('label[for="bairro"]'),
     helper: document.getElementById("bairro-helper"),
-    errorMessage: "Bairro deve ser maior que 4 caracteres!\n",
+    helperErrorMessage: "Informe bairro",
+    popupErrorMessage: "O bairro deve conter mais de 4 caracteres;\n",
     validate: validarString04,
     formatInput: null,
     nextField: null,
@@ -83,7 +90,8 @@ const fields = [
     input: document.getElementById("cidade"),
     label: document.querySelector('label[for="cidade"]'),
     helper: document.getElementById("cidade-helper"),
-    errorMessage: "Cidade deve ser maior que 4 caracteres!\n",
+    helperErrorMessage: "Informe cidade",
+    popupErrorMessage: "A cidade deve conter mais de 4 caracteres!\n",
     validate: validarString04,
     formatInput: null,
     nextField: null,
@@ -94,7 +102,8 @@ const fields = [
     input: document.getElementById("estado"),
     label: document.querySelector('label[for="estado"]'),
     helper: document.getElementById("estado-helper"),
-    errorMessage: "Informe o estado!\n",
+    helperErrorMessage: "Informe estado",
+    popupErrorMessage: "Informe o estado do logradouro;\n",
     validate: validarString02,
     formatInput: null,
     nextField: null,
@@ -105,7 +114,8 @@ const fields = [
     input: document.getElementById("cep"),
     label: document.querySelector('label[for="cep"]'),
     helper: document.getElementById("cep-helper"),
-    errorMessage: "CEP inválido!\n",
+    helperErrorMessage: "CEP inválido",
+    popupErrorMessage: "O CEP informado está inválido;\n",
     validate: validarCep,
     formatInput: formatarCep,
     nextField: document.querySelector("#telefone"),
@@ -116,7 +126,8 @@ const fields = [
     input: document.getElementById("telefone"),
     label: document.querySelector('label[for="telefone"]'),
     helper: document.getElementById("telefone-helper"),
-    errorMessage: "Telefone inválido!\n",
+    helperErrorMessage: "Telefone inválido",
+    popupErrorMessage: "O Telefone informado está inválido;\n",
     validate: validarTelefone,
     formatInput: formatarTelefone,
     nextField: document.querySelector("#tipo_sanguineo"),
@@ -124,6 +135,8 @@ const fields = [
 ];
 
 const buttonEnviar = document.querySelector('input[type="submit"]');
+const messageError = document.getElementById("messageError");
+const errorPopup = document.getElementById("errorPopup");
 
 fields.forEach((field) => {
   // Adicionar tratamento de eventos 'focus' para campos obrigatórios
@@ -162,7 +175,7 @@ function validarCampoGenerico(value, fieldName, validateFunction) {
 
 function formatarCampo(indexField, status) {
   const field = fields[indexField];
-  const { requerido, label, input, helper, errorMessage } = field;
+  const { requerido, label, input, helper, helperErrorMessage } = field;
 
   if (status === true) {
     label.classList.remove("required-popup");
@@ -176,7 +189,7 @@ function formatarCampo(indexField, status) {
     input.classList.remove("correct");
     input.classList.add("error");
     helper.classList.add("visible");
-    helper.innerHTML = errorMessage;
+    helper.innerHTML = helperErrorMessage;
   }
 }
 
@@ -309,7 +322,7 @@ buttonEnviar.addEventListener("click", (event) => {
 
   fields.forEach((field) => {
     if (field.requerido && !field.validate(field.input.value)) {
-      msgErro += field.errorMessage;
+      msgErro += field.popupErrorMessage;
       if (!fieldFocus) {
         fieldFocus = field.input.id;
       }
@@ -319,7 +332,7 @@ buttonEnviar.addEventListener("click", (event) => {
   if (msgErro === "") {
     alert("Dados enviados com sucesso!");
   } else {
-    alert(msgErro);
+    showErrorPopup(msgErro);
     event.preventDefault();
     const focusField = fields.find((field) => field.input.id === fieldFocus);
     if (focusField) {
@@ -327,3 +340,11 @@ buttonEnviar.addEventListener("click", (event) => {
     }
   }
 });
+
+function showErrorPopup(message) {
+  messageError.innerText = message;
+  errorPopup.style.display = "flex";
+  setTimeout(function () {
+    errorPopup.style.display = "none";
+  }, 5000); // Oculta o popup após 5 segundos
+}
