@@ -134,7 +134,56 @@ const fields = [
   },
 ];
 
+const fieldsClean = [
+  {
+    fieldName: "complemento",
+    type: "input",
+    object: document.getElementById("complemento"),
+  },
+  {
+    fieldName: "tipo_sanguineo",
+    type: "select",
+    object: document.getElementById("tipo_sanguineo"),
+  },
+  {
+    fieldName: "fator_rh",
+    type: "select",
+    object: document.getElementById("fator_rh"),
+  },
+  {
+    fieldName: "checkHipertensao",
+    type: "checkbox",
+    object: document.getElementById("checkHipertensao"),
+  },
+  {
+    fieldName: "checkDiabetes",
+    type: "checkbox",
+    object: document.getElementById("checkDiabetes"),
+  },
+  {
+    fieldName: "checkCardiaco",
+    type: "checkbox",
+    object: document.getElementById("checkCardiaco"),
+  },
+  {
+    fieldName: "checkGravidez",
+    type: "checkbox",
+    object: document.getElementById("checkGravidez"),
+  },
+  {
+    fieldName: "checkImuno",
+    type: "checkbox",
+    object: document.getElementById("checkImuno"),
+  },
+  {
+    fieldName: "checkTatuagens",
+    type: "checkbox",
+    object: document.getElementById("checkTatuagens"),
+  },
+];
+
 const buttonEnviar = document.querySelector('input[type="submit"]');
+const buttonCancelar = document.getElementById("cancelar");
 const messagePopup = document.getElementById("messagePopup");
 const windowPopup = document.getElementById("windowPopup");
 
@@ -319,22 +368,27 @@ function formatarTelefone(telefone, nextField) {
 buttonEnviar.addEventListener("click", (event) => {
   let msgErro = "";
   let fieldFocus = "";
+  event.preventDefault();
 
   fields.forEach((field) => {
-    if (field.requerido && !field.validate(field.input.value)) {
-      msgErro += field.popupErrorMessage;
-      if (!fieldFocus) {
-        fieldFocus = field.input.id;
+    if (!field.validate(field.input.value)) {
+      if (
+        field.requerido ||
+        (!field.requerido && field.input.value.length > 0)
+      ) {
+        msgErro += field.popupErrorMessage;
+        if (!fieldFocus) {
+          fieldFocus = field.input.id;
+        }
       }
     }
   });
 
   if (msgErro === "") {
     showPopup("Dados enviados com sucesso!", "success-popup");
-    event.preventDefault();
+    limparFormulario();
   } else {
     showPopup(msgErro, "error-popup");
-    event.preventDefault();
     const focusField = fields.find((field) => field.input.id === fieldFocus);
     if (focusField) {
       focusField.input.focus();
@@ -350,4 +404,19 @@ function showPopup(message, classe) {
     windowPopup.classList.remove(classe);
     windowPopup.style.display = "none";
   }, 5000); // Oculta o popup após 5 segundos
+}
+
+function limparFormulario() {
+  fields.forEach((field) => {
+    field.input.value = "";
+    field.input.classList.remove("correct");
+  });
+
+  fieldsClean.forEach((field) => {
+    if (field.type == "input" || field.type == "select") {
+    field.object.value = "";
+    } else if (field.type == "checkbox"){
+      field.object.checked = false;
+    }
+  });
 }
