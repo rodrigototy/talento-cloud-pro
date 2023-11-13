@@ -72,6 +72,10 @@ body {
   max-height: 600px;
 }
 
+.half-cell-60 {
+  width: 60%;
+}
+
 .half-cell-50 {
   width: 50%;
 }
@@ -86,6 +90,10 @@ body {
 
 .half-cell-20 {
   width: 20%;
+}
+
+.half-cell-15 {
+  width: 15%;
 }
 
 .buttons {
@@ -148,6 +156,7 @@ legend {
   color: white;
   font-size: 18px;
   font-weight: 700;
+  position: relative;
 }
 
 input[type="text"],
@@ -400,4 +409,43 @@ footer {
   input[type="submit"] {
     width: 40%;
   }
+}
+
+/* ---------- Estilos dinâmicos ---------- */
+
+.helper-text {
+  display: none;
+  font-size: .75rem;
+  color: darkred;
+  background-color: #CCBBBB;
+  width: fit-content;
+}
+
+.required-popup::after {
+  content: "*Campo obrigatório";
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #DFDFDF;
+  font-size: .65rem;
+  padding: .2rem .3rem;
+  width: auto;
+  display: block;
+  background-color: #202020;
+}
+
+.error {
+  border: solid 2px #992020;
+  background-color: #CCBBBB;
+  color: #662020;
+}
+
+.correct {
+  background-color: #BBCCBB;
+  border: solid 2px #206620;
+  color: #206620;
+}
+
+.visible {
+  display: block;
 }
