@@ -163,12 +163,15 @@ function validarCampoGenerico(value, fieldName, validateFunction) {
 
 function formatarCampo(indexField, status) {
   const field = fields[indexField];
-  const { label, input, helper, errorMessage } = field;
+  const { requerido, label, input, helper, errorMessage } = field;
 
-  if (status) {
+  if (status === true) {
     label.classList.remove("required-popup");
     input.classList.remove("error");
     input.classList.add("correct");
+    helper.classList.remove("visible");
+  } else if (status === null && !requerido) {
+    input.classList.remove("error");
     helper.classList.remove("visible");
   } else {
     input.classList.remove("correct");
@@ -238,7 +241,7 @@ function validarEmail(email) {
   if (email.length > 0) {
     return regexEmail.test(email);
   } else {
-    return true;
+    return null;
   }
 }
 
