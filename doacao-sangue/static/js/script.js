@@ -396,6 +396,10 @@ buttonEnviar.addEventListener("click", (event) => {
   }
 });
 
+buttonCancelar.addEventListener("click", (event) => {
+  window.location.href = "index.html";
+});
+
 function showPopup(message, classe) {
   messagePopup.innerText = message;
   windowPopup.classList.add(classe);
@@ -414,8 +418,8 @@ function limparFormulario() {
 
   fieldsClean.forEach((field) => {
     if (field.type == "input" || field.type == "select") {
-    field.object.value = "";
-    } else if (field.type == "checkbox"){
+      field.object.value = "";
+    } else if (field.type == "checkbox") {
       field.object.checked = false;
     }
   });
