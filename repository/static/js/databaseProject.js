@@ -57,7 +57,7 @@ const databaseProject = [
   ),
   new Projeto(
     "Validação de CEP com BrasilAPI",
-    "js-2/validacao-formularios",
+    "js-2/valida-cep",
     "Usando a aplicação BrasilAPI para validar CEP informado"
   ),
   //  new Projeto("", "", ""),
