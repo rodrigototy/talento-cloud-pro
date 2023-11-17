@@ -55,6 +55,11 @@ const databaseProject = [
     "js-2/validacao-formularios",
     "Usando eventos para validar formulários"
   ),
+  new Projeto(
+    "Validação de CEP com BrasilAPI",
+    "js-2/validacao-formularios",
+    "Usando a aplicação BrasilAPI para validar CEP informado"
+  ),
   //  new Projeto("", "", ""),
 ];
 
