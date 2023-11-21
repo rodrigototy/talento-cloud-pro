@@ -4,7 +4,6 @@ import {
   validarDataNascimento,
   validarEmail,
   validarCPF,
-  validarCep,
   validarTelefone,
   CarregaEnderecoPeloCEP,
 } from "./validateModule.js";

@@ -60,14 +60,6 @@ export function validarEmail(email) {
   }
 }
 
-export function validarCep(cep) {
-  const regexCep = /^\d{8}$/; // Expressão regular para validar o CEP
-  // remove todos os caracteres não numéricos
-  cep = cep.replace(/[^\d]+/g, "");
-  // Verifica se o CEP corresponde à expressão regular
-  return regexCep.test(cep);
-}
-
 export function validarTelefone(telefone) {
   const regexFixo = /^\d{10}$/;
   const regexCelular = /^\d{11}$/;
@@ -77,33 +69,41 @@ export function validarTelefone(telefone) {
 }
 
 export async function CarregaEnderecoPeloCEP(cepInput) {
+  // Expressão regular para validar o CEP
+  const regexCep = /^\d{8}$/;
+  //  API do BrasilAPI 
   const apiUrl = `https://brasilapi.com.br/api/cep/v1/${cepInput}`;
-  console.log(apiUrl);
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
 
-    if (response.ok) {
-      const addressData = {
-        cep: data.cep || cepInput,
-        logradouro: data.street || null,
-        bairro: data.neighborhood || null,
-        cidade: data.city || null,
-        estado: data.state || null,
-      };
+  // remove todos os caracteres não numéricos
+  cepInput = cepInput.replace(/[^\d]+/g, "");
+  // Verifica se o CEP corresponde à expressão regular
+  if (regexCep.test(cepInput)) {
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
 
-      // Exibir resultados
-      carregaLogradouro(addressData);
-      return true;
-    } else {
-      // Tratar erro na resposta da API
-      console.error("Erro na requisição:", data.message);
-      alert("Erro na consulta do CEP. Verifique se o CEP é válido.");
+      if (response.ok) {
+        const addressData = {
+          cep: data.cep || cepInput,
+          logradouro: data.street || null,
+          bairro: data.neighborhood || null,
+          cidade: data.city || null,
+          estado: data.state || null,
+        };
+
+        // Exibir resultados
+        carregaLogradouro(addressData);
+        return true;
+      } else {
+        // Tratar erro na resposta da API
+        console.error("Erro na requisição:", data.message);
+        alert("Erro na consulta do CEP. Verifique se o CEP é válido.");
+        return false;
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error);
+      alert("Erro na consulta do CEP. Verifique sua conexão.");
       return false;
     }
-  } catch (error) {
-    console.error("Erro na requisição:", error);
-    alert("Erro na consulta do CEP. Verifique sua conexão.");
-    return false;
   }
 }
