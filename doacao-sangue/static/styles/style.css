@@ -1,9 +1,8 @@
-/* style.css */
+/* Reset CSS */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /*
-  border: 1px solid black;  */
+  box-sizing: border-box;
 }
 
 ul {
@@ -47,7 +46,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 20px;
+  padding-left: 20px;
 }
 
 .form-column {
@@ -72,65 +71,6 @@ body {
   max-height: 600px;
 }
 
-.half-cell-60 {
-  width: 60%;
-}
-
-.half-cell-50 {
-  width: 50%;
-}
-
-.half-cell-40 {
-  width: 40%;
-}
-
-.half-cell-30 {
-  width: 30%;
-}
-
-.half-cell-20 {
-  width: 20%;
-}
-
-.half-cell-15 {
-  width: 15%;
-}
-
-.buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 25px;
-}
-
-.logo_button {
-  max-width: 25%;
-  border-radius: 10px;
-}
-
-.check-column {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.check-row {
-  display: flex;
-  justify-content: space-around;
-}
-
-.check-item {
-  display: flex;
-  align-items: center;
-  width: 30%;
-  gap: 0.5rem;
-}
-
-.check-item label {
-  margin: 0;
-}
-
 /* Estilos para o formulário */
 form {
   display: flex;
@@ -143,20 +83,13 @@ form {
   flex-wrap: wrap;
 }
 
-fieldset {
-  padding: 0.5rem;
-  border-radius: 0.75rem;
-}
-
 /* Estilos para rótulos e campos de entrada */
-label,
-legend {
+label {
   display: block;
   margin-bottom: 5px;
   color: white;
   font-size: 18px;
   font-weight: 700;
-  position: relative;
 }
 
 input[type="text"],
@@ -196,24 +129,65 @@ input[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-footer {
+input[id="nome"] {
+  width: 90%;
+}
+
+.buttons {
   display: flex;
-  justify-content: center;
-  margin-top: 30px;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.logo_button {
+  max-width: 25%;
+  border-radius: 10px;
+}
+
+input[id="endereco"] {
+  width: 90%;
+}
+
+textarea[id="comorbidades"] {
+  width: 80%;
+}
+
+input[id="data_nascimento"] {
+  width: 80%;
+}
+
+input[id="cpf"] {
+  width: 80%;
+}
+
+input[id="cidade"] {
+  width: 90%;
+}
+
+select[id="estado"] {
+  width: 70%;
+}
+
+input[id="cep"] {
+  width: 50%;
+}
+
+input[id="telefone"] {
+  width: 70%;
+}
+
+select[id="tipo_sanguineo"] {
+  width: 60%;
+}
+
+select[id="fator_rh"] {
+  width: 60%;
 }
 
 /* Estilos para elementos responsivos */
-@media (max-width: 1100px) {
-  .form-row {
-    padding: 0 10px;
-  }
-}
-
-@media (max-width: 1040px) {
-  .logo_form {
-    width: 25%;
-  }
-
+@media (max-width: 940px) {
   input[type="button"],
   input[type="submit"] {
     font-weight: 300;
@@ -221,7 +195,7 @@ footer {
   }
 }
 
-@media (max-width: 980px) {
+@media (max-width: 860px) {
   .logo {
     max-width: auto;
     max-height: 50px;
@@ -235,12 +209,7 @@ footer {
     margin: 5px;
   }
 
-  .buttons {
-    margin-top: 20px;
-  }
-
-  label,
-  legend {
+  label {
     font-size: 16px;
   }
 
@@ -259,41 +228,22 @@ footer {
   .form-title {
     font-size: small;
   }
-
-  form {
-    padding: 1rem 3rem 1rem 2rem;
-  }
 }
 
-@media (max-width: 660px) {
+@media (max-width: 620px) {
   .logo {
     display: none;
-  }
-
-  .form-row {
-    padding: 0 2px;
   }
 
   input[type="button"],
   input[type="submit"] {
     font-size: 14px;
     padding: 5px 10px;
-  }
-
-  label,
-  legend {
-    font-size: smaller;
+    width: auto;
   }
 }
 
-@media (max-width: 620px) {
-  .sub-grupo-2 {
-    flex-direction: column;
-    align-self: stretch;
-  }
-}
-
-@media (max-width: 580px) {
+@media (max-width: 500px) {
   .form-title {
     font-size: x-small;
   }
@@ -303,30 +253,15 @@ footer {
     display: none;
   }
 
-  .form-row {
-    padding: 0;
-    align-self: flex-start;
-  }
-
-  .check-column {
-    flex-direction: row;
-    justify-content: space-around;
-  }
-
-  .check-row {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .check-item {
-    width: auto;
-    align-items: center;
+  label {
+    font-size: 14px;
   }
 
   input[type="text"],
   input[type="date"],
   input[type="tel"],
-  select {
+  select,
+  textarea {
     padding: 2px;
     margin-bottom: 2px;
     border: 1px solid #ccc;
@@ -338,34 +273,6 @@ footer {
   input[type="submit"] {
     font-size: 14px;
     padding: 5px 10px;
-    width: 30%;
-  }
-}
-
-@media (max-width: 540px) {
-  .form-row {
-    margin: 2px;
-    padding: 0 2px;
-  }
-
-  .sub-grupo-2 {
-    flex-direction: column;
-    align-self: stretch;
-  }
-
-  .buttons {
-    margin-top: 15px;
-  }
-
-  form {
-    padding: 1rem 2rem 1rem 1rem;
-  }
-}
-
-@media (max-width: 490px) {
-  .sub-grupo-4 {
-    flex-direction: column;
-    align-self: stretch;
   }
 }
 
@@ -374,117 +281,23 @@ footer {
     font-size: xx-small;
   }
 
-  .sub-grupo-1,
-  .sub-grupo-6 {
-    flex-direction: column;
-    align-self: stretch;
-  }
-
-  .check-column {
-    flex-direction: column;
-    padding-left: 1.5rem;
-  }
-
-  label,
-  legend {
+  label {
     font-size: 12px;
   }
 
   input[type="button"],
   input[type="submit"] {
     font-size: 12px;
-    width: 35%;
   }
-}
 
-@media (max-width: 320px) {
-  .sub-grupo-3,
-  .sub-grupo-5 {
+  .form-column {
     display: flex;
     flex-direction: column;
     align-self: stretch;
   }
 
-  input[type="button"],
-  input[type="submit"] {
-    width: 40%;
+  .form-row {
+    padding-left: 20px;
+    align-self: flex-start;
   }
-}
-
-/* ---------- Estilos dinâmicos ---------- */
-
-.helper-text {
-  display: none;
-  font-size: 0.75rem;
-  color: darkred;
-  background-color: #ccbbbb;
-  width: fit-content;
-  padding: 0 0.3rem;
-}
-
-.required-popup::after {
-  content: "*Requerido";
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: #dfdfdf;
-  font-size: 0.65rem;
-  padding: 0.2rem 0.3rem;
-  width: auto;
-  display: block;
-  background-color: #202020;
-}
-
-.error {
-  border: solid 2px #992020;
-  background-color: #ccbbbb;
-  color: #662020;
-}
-
-.correct {
-  background-color: #bbccbb;
-  border: solid 2px #206620;
-  color: #206620;
-}
-
-.visible {
-  display: block;
-}
-
-.window-popup {
-  position: fixed;
-  top: 5vh;
-  left: 50vw;
-  border-radius: 1vh;
-  transform: translateX(-50%);
-  width: 30vw;
-  color: #fff;
-  font-size: 0.8rem;
-  padding: 0.5rem;
-  display: none;
-  align-items: center;
-  text-align: left;
-  z-index: 999;
-}
-
-.window-popup::before {
-  width: auto; /* Ajuste conforme necessário */
-  height: auto; /* Ajuste conforme necessário */
-  margin: 0 20px; /* Espaço entre a imagem e o texto */
-}
-
-.error-popup::before {
-  content: url('../img/mensagem-de-erro-64.png');
-}
-
-.error-popup {
-  background-color: #ff9999; /* Tons de vermelho */
-}
-
-.success-popup {
-  background-color: #66cc66; /* Tons de verde */
-}
-
-.success-popup::before {
-  content: url('../img/mensagem-de-sucesso-64.png'); 
 }
