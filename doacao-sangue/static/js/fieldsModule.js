@@ -70,7 +70,7 @@ export const fields = [
     validateFunction: validarCPF,
     validateParameter: null,
     formatInput: formatarCPF,
-    nextField: document.querySelector("#logradouro"),
+    nextField: document.querySelector("#nome"),
   },
   {
     fieldName: "logradouro",
