@@ -48,6 +48,19 @@ function formatarCampo(indexField, status) {
   }
 }
 
+export function carregaLogradouro(addressData) {
+  fields.forEach((field) => {
+    const { fieldName, input } = field;
+    const value =
+      addressData[fieldName] !== undefined ? addressData[fieldName] : null;
+
+    if (value) {
+      input.value = value;
+      input.disabled = true;
+    }
+  });
+}
+
 export function showPopup(message, classe) {
   messagePopup.innerText = message;
   windowPopup.classList.add(classe);

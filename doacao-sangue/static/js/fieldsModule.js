@@ -152,7 +152,7 @@ export const fields = [
     popupErrorMessage: "O CEP informado está inválido;\n",
     validateFunction: CarregaEnderecoPeloCEP,
     validateParameter: null,
-    formatInput: null,  // formatarCep,
+    formatInput: formatarCep,
     nextField: document.querySelector("#logradouro"),
   },
   {

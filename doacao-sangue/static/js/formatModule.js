@@ -38,15 +38,3 @@ export function formatarTelefone(telefone, nextField) {
   }
   return telefone;
 }
-
-export function carregaLogradouro (addressData){
-    fields.forEach(field => {
-      const { fieldName, input } = field;
-      const value = addressData[fieldName] || null;
-  
-      if (input) {
-        input.value = value;
-        input.disable = true;
-      }
-    });
-}

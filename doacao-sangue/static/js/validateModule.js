@@ -1,4 +1,4 @@
-import { carregaLogradouro } from "./formatModule.js";
+import { carregaLogradouro } from "./functionsModule.js";
 
 export function validarString(string, length) {
   if (string.length > 0) {
@@ -84,7 +84,7 @@ export async function CarregaEnderecoPeloCEP(cepInput) {
 
       if (response.ok) {
         const addressData = {
-          cep: data.cep || cepInput,
+          // cep: data.cep || cepInput,
           logradouro: data.street || null,
           bairro: data.neighborhood || null,
           cidade: data.city || null,
@@ -97,7 +97,7 @@ export async function CarregaEnderecoPeloCEP(cepInput) {
       } else {
         // Tratar erro na resposta da API
         console.error("Erro na requisição:", data.message);
-        alert("Erro na consulta do CEP. Verifique se o CEP é válido.");
+        alert("CEP inválido ou inexistente. Verifique se o CEP está correto.");
         return false;
       }
     } catch (error) {

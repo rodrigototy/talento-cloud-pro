@@ -18,7 +18,7 @@ fields.forEach((field) => {
     }
   });
   // Adicionar tratamento de eventos 'blur' para validação
-  field.input.addEventListener("blur", (e) => {
+  field.input.addEventListener("input", (e) => {
     if (field.validateFunction) {
       validarCampoGenerico(
         field.input.value,
@@ -31,7 +31,7 @@ fields.forEach((field) => {
     }
   });
   // Adicionar formatação dos dados no Input
-  field.input.addEventListener("input", () => {
+  field.input.addEventListener("blur", () => {
     if (field.formatInput) {
       field.input.value = field.formatInput(field.input.value, field.nextField);
     }
