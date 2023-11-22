@@ -7,8 +7,11 @@ import {
   limparFormulario,
 } from "./functionsModule.js";
 
+const versionControl = document.querySelector("#version_id");
 const buttonEnviar = document.querySelector('input[type="submit"]');
 const buttonCancelar = document.getElementById("cancelar");
+
+versionControl.innerHTML = "Versão: 1.0.01";
 
 fields.forEach((field) => {
   // Adicionar tratamento de eventos 'focus' para campos obrigatórios
