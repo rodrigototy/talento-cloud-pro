@@ -69,7 +69,7 @@ export const fields = [
     validateFunction: validarCPF,
     validateParameter: null,
     formatInput: formatarCPF,
-    nextField: document.querySelector("#nome"),
+    nextField: document.querySelector("#cep"),
   },
   {
     fieldName: "logradouro",
