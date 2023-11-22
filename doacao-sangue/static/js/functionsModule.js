@@ -74,6 +74,7 @@ export function showPopup(message, classe) {
 export function limparFormulario() {
   fields.forEach((field) => {
     if (field.input_type == "input" || field.input_type == "select") {
+      field.disabled = false;
       field.input.value = "";
       field.input.classList.remove("correct");
     } else if (field.input_type == "checkbox") {
